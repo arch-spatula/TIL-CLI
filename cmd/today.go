@@ -1,6 +1,5 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -14,12 +13,10 @@ import (
 var todayCmd = &cobra.Command{
 	Use:   "today",
 	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Long: `오늘을 기준으로 TIL 문서를 자동생성합니다.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+이미 파일이 생성되어 있으면 실행하지 않습니다.
+`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("today called")
 	},
