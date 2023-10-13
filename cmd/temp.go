@@ -22,8 +22,14 @@ var tempCmd = &cobra.Command{
 템플릿이 없으면 기본 생성해줄 것입니다.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if _, err := os.Stat("template.md"); errors.Is(err, os.ErrNotExist) {
-			// path/to/whatever does not exist
 			fmt.Println("template.md이 존재하지 않아 임시로 만들어두겠습니다.")
+			file, err := os.Create("template.md")
+			if err != nil {
+				fmt.Printf("Unable to write file: %v\n", err)
+			}
+			defer file.Close()
+		} else {
+			fmt.Println("template.md이 존재합니다. 여기서 편집하고 마음에 들면 ./TIL-CLI today로 만들어 보세요!!!")
 		}
 	},
 }
