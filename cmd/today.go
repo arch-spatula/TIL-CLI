@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/spf13/cobra"
 )
@@ -18,7 +19,9 @@ var todayCmd = &cobra.Command{
 이미 파일이 생성되어 있으면 실행하지 않습니다.
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("today called")
+		file := time.Now().Format("200601")
+		markdown := time.Now().Format("20060102")
+		fmt.Println(file + "/" + markdown + ".md")
 	},
 }
 
