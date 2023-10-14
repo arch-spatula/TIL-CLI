@@ -26,7 +26,8 @@ var todayCmd = &cobra.Command{
 이미 파일이 생성되어 있으면 실행하지 않습니다.
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		folder := time.Now().Format("200601")
+		// 이번달 폴더 오늘 TIL 마크다운 파일이름 만들기
+		folder := time.Now().Format("0601")
 		markdown := time.Now().Format("20060102")
 
 		err := os.Mkdir(folder, 0755)
@@ -36,13 +37,20 @@ var todayCmd = &cobra.Command{
 
 		todayMarkdownFile := folder + "/" + markdown + ".md"
 
-		file, err := os.Create(todayMarkdownFile)
+		todayFile, err := os.Create(todayMarkdownFile)
 		if err != nil {
 			fmt.Printf("Unable to write file: %v\n", err)
 		}
-		defer file.Close()
+		defer todayFile.Close()
 
-		fmt.Fprintln(file, "# hello today")
+		// template.md 읽기
+		template, err := os.ReadFile("template.md")
+		if err != nil {
+			fmt.Printf("Unable to read file: %v\n", err)
+		}
+
+		// 오늘 TIL에 쓰기
+		fmt.Fprintln(todayFile, string(template))
 	},
 }
 
