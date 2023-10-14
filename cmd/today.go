@@ -41,6 +41,8 @@ var todayCmd = &cobra.Command{
 			fmt.Printf("Unable to write file: %v\n", err)
 		}
 		defer file.Close()
+
+		fmt.Fprintln(file, "# hello today")
 	},
 }
 
