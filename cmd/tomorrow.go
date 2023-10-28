@@ -14,7 +14,7 @@ import (
 // tomorrowCmd represents the tomorrow command
 var tomorrowCmd = &cobra.Command{
 	Use:   "tomorrow",
-	Short: "A brief description of your command",
+	Short: "내일을 기준으로 TIL 문서를 자동생성합니다.",
 	Long: `내일을 기준으로 TIL 문서를 자동생성합니다.
 
 	이미 파일이 생성되어 있으면 실행하지 않습니다.
