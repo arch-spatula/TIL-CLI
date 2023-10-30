@@ -23,7 +23,9 @@ var diffCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		data, err := os.Open("setting.json")
 		if err != nil {
-			fmt.Println(err)
+			panic(`setting.json 파일이 없습니다.
+
+./TIL-CLI init 명령을 먼저 해주세요.`)
 		}
 
 		defer data.Close()
