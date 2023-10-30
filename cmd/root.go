@@ -30,7 +30,7 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "TIL-CLI",
-	Short: "A brief description of your application",
+	Short: "TIL를 자동으로 생성하는 CLI 툴입니다.",
 	Long:  `TIL를 자동으로 생성하는 CLI 툴입니다.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:

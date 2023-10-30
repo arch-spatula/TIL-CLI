@@ -14,7 +14,7 @@ import (
 // todayCmd represents the today command
 var todayCmd = &cobra.Command{
 	Use:   "today",
-	Short: "A brief description of your command",
+	Short: "오늘을 기준으로 TIL 문서를 자동생성합니다.",
 	Long: `오늘을 기준으로 TIL 문서를 자동생성합니다.
 
 이미 파일이 생성되어 있으면 실행하지 않습니다.
