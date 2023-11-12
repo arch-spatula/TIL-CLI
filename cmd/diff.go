@@ -35,7 +35,7 @@ var diffCmd = &cobra.Command{
 		var info map[string]interface{}
 		json.Unmarshal([]byte(byteValue), &info)
 
-		daysWithoutAccident := strings.Split(fmt.Sprint(info["days-without-accident"]), "-")
+		daysWithoutAccident := strings.Split(fmt.Sprint(info["days-without-accident-day"]), "-")
 
 		yyyy := 1000
 		mm := 1
@@ -80,6 +80,8 @@ func init() {
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
 	// diffCmd.PersistentFlags().String("foo", "", "A help for foo")
+
+	diffCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
