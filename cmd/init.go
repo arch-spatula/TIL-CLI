@@ -34,14 +34,18 @@ setting.json를 읽고 다른 커맨드가 활용할 기준 파일을 즉 설정
 
 			s := time.Now().Format("2006-01-02")
 			today := fmt.Sprintf(`{
+	"current-project": "진행 중인 프로젝트를 입력해주세요",
+	"current-project-start-day": "%s",
+	"show-current-project": true,
 	"days-without-accident-day": "%s",
 	"days-without-accident": true,
+	"gratification-diary": true,
 	"draft": {
 		"today": "",
 		"tomorrow": "",
 		"retro": ""
 	}
-}`, s)
+}`, s, s)
 
 			fmt.Fprintln(settingJsonFile, string(today))
 
