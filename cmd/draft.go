@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 
 	"github.com/spf13/cobra"
 )
@@ -48,8 +49,33 @@ var draftCmd = &cobra.Command{
 
 		// setting.json에 없는 키워드 접근하면 차단
 		key := args[0]
-		if value, ok := draft.(map[string]interface{})[key]; ok {
-			fmt.Println(value)
+		if settingText, ok := draft.(map[string]interface{})[key]; ok {
+			fmt.Println(settingText)
+			// 이번달 폴더 오늘 TIL 마크다운 파일이름 만들기
+			folder := time.Now().Format("0601")
+			markdown := time.Now().Format("060102")
+
+			if err := os.Mkdir(folder, 0755); !os.IsExist(err) {
+				fmt.Println("이번달 폴더를 만들어두겠습니다.")
+			}
+
+			markdownFileName := folder + "/TIL" + markdown + ".md"
+
+			if _, err := os.Stat(markdownFileName); os.IsNotExist(err) {
+				markdownFile, err := os.Create(markdownFileName)
+				if err != nil {
+					fmt.Printf("Unable to write file: %v\n", err)
+				}
+				defer markdownFile.Close()
+
+				// 오늘 TIL에 쓰기
+				fmt.Fprintln(markdownFile, string(fmt.Sprint(settingText)))
+
+				fmt.Println(markdownFileName, "을 만들어두겠습니다.")
+			} else {
+				fmt.Println(markdownFileName, "이 이미 만들어졌습니다.")
+			}
+
 		} else {
 			panic(`draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요
 
