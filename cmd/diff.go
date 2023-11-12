@@ -23,7 +23,9 @@ var diffCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		data, err := os.Open("setting.json")
 		if err != nil {
-			fmt.Println(err)
+			panic(`setting.json 파일이 없습니다.
+
+./TIL-CLI init 명령을 먼저 해주세요.`)
 		}
 
 		defer data.Close()
@@ -33,7 +35,7 @@ var diffCmd = &cobra.Command{
 		var info map[string]interface{}
 		json.Unmarshal([]byte(byteValue), &info)
 
-		daysWithoutAccident := strings.Split(fmt.Sprint(info["days-without-accident"]), "-")
+		daysWithoutAccident := strings.Split(fmt.Sprint(info["days-without-accident-day"]), "-")
 
 		yyyy := 1000
 		mm := 1
@@ -78,6 +80,8 @@ func init() {
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
 	// diffCmd.PersistentFlags().String("foo", "", "A help for foo")
+
+	diffCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
