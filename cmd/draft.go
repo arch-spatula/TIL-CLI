@@ -18,7 +18,7 @@ var draftCmd = &cobra.Command{
 	Use:              "draft [OPTIONS]",
 	TraverseChildren: true,
 	Short:            "draft (today/tomorrow/retro) 3가지 파일 중 1개 생성",
-	Long: `
+	Long: `예를 들어 오늘이 2023년 11월 12일이면 다음처첨 생성합니다.
 
 - today:    오늘 TIL 템플릿을 생성합니다. 2311/TIL231112.md
 - tomorrow: 내일 TIL 템플릿을 생성합니다. 2311/TIL231113.md
@@ -42,15 +42,16 @@ var draftCmd = &cobra.Command{
 
 		// 하위 플래그를 지정하지 않으면 차단
 		if len(args) != 1 {
-			panic(`draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요
+			panic(`현재 draft 뒤에 입력한 flag가 없습니다.
 
-./TIL draft today`)
+draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요.
+
+./TIL-CLI draft today`)
 		}
 
 		// setting.json에 없는 키워드 접근하면 차단
 		key := args[0]
 		if settingText, ok := draft.(map[string]interface{})[key]; ok {
-			fmt.Println(settingText)
 			// 이번달 폴더 오늘 TIL 마크다운 파일이름 만들기
 			folder := time.Now().Format("0601")
 			markdown := time.Now().Format("060102")
@@ -79,7 +80,7 @@ var draftCmd = &cobra.Command{
 		} else {
 			panic(`draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요
 
-./TIL draft today`)
+./TIL-CLI draft today`)
 		}
 	},
 }
