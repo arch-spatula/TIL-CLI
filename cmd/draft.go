@@ -39,13 +39,22 @@ var draftCmd = &cobra.Command{
 
 		draft := info["draft"]
 
-		today := draft.(map[string]interface{})["today"]
-		tomorrow := draft.(map[string]interface{})["tomorrow"]
-		retro := draft.(map[string]interface{})["retro"]
-		none := draft.(map[string]interface{})["none"]
-		empty := draft.(map[string]interface{})["empty"]
+		// 하위 플래그를 지정하지 않으면 차단
+		if len(args) != 1 {
+			panic(`draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요
 
-		fmt.Println("draft called", args, "today", today, "tomorrow", tomorrow, "retro", retro, "none", none, "empty", empty)
+./TIL draft today`)
+		}
+
+		// setting.json에 없는 키워드 접근하면 차단
+		key := args[0]
+		if value, ok := draft.(map[string]interface{})[key]; ok {
+			fmt.Println(value)
+		} else {
+			panic(`draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요
+
+./TIL draft today`)
+		}
 	},
 }
 
