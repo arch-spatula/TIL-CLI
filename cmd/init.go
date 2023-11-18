@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,10 @@ var initCmd = &cobra.Command{
 
 setting.json를 읽고 다른 커맨드가 활용할 기준 파일을 즉 설정에 관한 파일을 만듭니다.`,
 	Run: func(cmd *cobra.Command, args []string) {
+
+		// utilfn.ReadJson()
+		jsonReader.ReadJson()
+		jsonReader.WriteJson()
 
 		settingJsonFileName := "til-config.json"
 

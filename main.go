@@ -21,7 +21,9 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/arch-spatula/TIL-CLI/cmd"
+import (
+	"github.com/arch-spatula/TIL-CLI/cmd"
+)
 
 func main() {
 	cmd.Execute()
