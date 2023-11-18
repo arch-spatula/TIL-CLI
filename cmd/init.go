@@ -23,7 +23,7 @@ var initCmd = &cobra.Command{
 setting.json를 읽고 다른 커맨드가 활용할 기준 파일을 즉 설정에 관한 파일을 만듭니다.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		settingJsonFileName := "setting.json"
+		settingJsonFileName := "til-config.json"
 
 		if _, err := os.Stat(settingJsonFileName); os.IsNotExist(err) {
 			settingJsonFile, err := os.Create(settingJsonFileName)
@@ -34,11 +34,12 @@ setting.json를 읽고 다른 커맨드가 활용할 기준 파일을 즉 설정
 
 			s := time.Now().Format("2006-01-02")
 			today := fmt.Sprintf(`{
-	"current-project": "진행 중인 프로젝트를 입력해주세요",
+	"current-project": "진행 중인 프로젝트를 입력해주세요. 지금은 {current-project-start-day}일차입니다.\n\n",
 	"current-project-start-day": "%s",
 	"show-current-project": true,
 	"days-without-accident-day": "%s",
 	"days-without-accident": true,
+	"gratification-format": "## 감사일기\n\n1. ???\n\n",
 	"gratification-diary": true,
 	"draft": {
 		"today": "",

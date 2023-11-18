@@ -49,6 +49,15 @@ draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요.
 ./TIL-CLI draft today`)
 		}
 
+		// title 접근
+		currentProject := info["current-project"]
+		// currentProjectStartToToday =
+		fmt.Println(currentProject)
+		// title parse 처리
+		// diff로 며칠차 차이구하기
+
+		// 실행 차단
+		// return
 		// setting.json에 없는 키워드 접근하면 차단
 		key := args[0]
 		if settingText, ok := draft.(map[string]interface{})[key]; ok {
