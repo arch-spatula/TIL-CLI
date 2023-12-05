@@ -6,7 +6,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"time"
 
 	// "github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
 	"github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
@@ -25,43 +24,7 @@ var initCmd = &cobra.Command{
 setting.json를 읽고 다른 커맨드가 활용할 기준 파일을 즉 설정에 관한 파일을 만듭니다.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		// utilfn.ReadJson()
-		// jsonReader.ReadJson()
-		// jsonReader.WriteJson()
-
-		jsonReader.ReadJson()
-
-		settingJsonFileName := "til-config.json"
-
-		if _, err := os.Stat(settingJsonFileName); os.IsNotExist(err) {
-			settingJsonFile, err := os.Create(settingJsonFileName)
-			if err != nil {
-				fmt.Printf("Unable to write file: %v\n", err)
-			}
-			defer settingJsonFile.Close()
-
-			s := time.Now().Format("2006-01-02")
-			today := fmt.Sprintf(`{
-	"current-project": "진행 중인 프로젝트를 입력해주세요. 지금은 {current-project-start-day}일차입니다.\n\n",
-	"current-project-start-day": "%s",
-	"show-current-project": true,
-	"days-without-accident-day": "%s",
-	"days-without-accident": true,
-	"gratification-format": "## 감사일기\n\n1. ???\n\n",
-	"gratification-diary": true,
-	"draft": {
-		"today": "",
-		"tomorrow": "",
-		"retro": ""
-	}
-}`, s, s)
-
-			fmt.Fprintln(settingJsonFile, string(today))
-
-			fmt.Println(settingJsonFileName, "을 만들어두겠습니다.")
-		} else {
-			fmt.Println(settingJsonFileName, "이 이미 만들어졌습니다.")
-		}
+		jsonReader.WriteJson()
 
 		gitignoreFileName := ".gitignore"
 		if _, err := os.Stat(gitignoreFileName); os.IsNotExist(err) {
