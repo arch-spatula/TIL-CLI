@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 
+	// "github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
 	"github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
 	"github.com/spf13/cobra"
 )
@@ -25,8 +26,10 @@ setting.json를 읽고 다른 커맨드가 활용할 기준 파일을 즉 설정
 	Run: func(cmd *cobra.Command, args []string) {
 
 		// utilfn.ReadJson()
+		// jsonReader.ReadJson()
+		// jsonReader.WriteJson()
+
 		jsonReader.ReadJson()
-		jsonReader.WriteJson()
 
 		settingJsonFileName := "til-config.json"
 
