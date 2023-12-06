@@ -4,10 +4,7 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-	"os"
-
-	// "github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
+	"github.com/arch-spatula/TIL-CLI/utilFn/gitignoreWriter"
 	"github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
 	"github.com/spf13/cobra"
 )
@@ -25,52 +22,8 @@ setting.json를 읽고 다른 커맨드가 활용할 기준 파일을 즉 설정
 	Run: func(cmd *cobra.Command, args []string) {
 
 		jsonReader.WriteJson()
+		gitignoreWriter.WriteGitIgnore()
 
-		gitignoreFileName := ".gitignore"
-		if _, err := os.Stat(gitignoreFileName); os.IsNotExist(err) {
-			settingJsonFile, err := os.Create(gitignoreFileName)
-			if err != nil {
-				fmt.Printf("Unable to write file: %v\n", err)
-			}
-			defer settingJsonFile.Close()
-
-			fmt.Fprintln(settingJsonFile, string(`# Ignore all
-*
-
-# Unignore all with extensions
-!*.*
-
-# Unignore all dirs
-!*/
-
-### Above combination will ignore all files without extension ###
-
-# Ignore files with extension .class & .sm
-*.class
-*.sm
-
-# Ignore bin dir
-bin/
-# or
-*/bin/*
-
-# Unignore all .jar in bin dir
-!*/bin/*.jar
-
-# Ignore all library.jar in bin dir
-*/bin/library.jar
-
-# Ignore a file with extension
-relative/path/to/dir/filename.extension
-
-# Ignore a file without extension
-template.md
-setting.json`))
-
-			fmt.Println(gitignoreFileName, "을 만들어두겠습니다.")
-		} else {
-			fmt.Println(gitignoreFileName, "이 이미 만들어졌습니다.")
-		}
 	},
 }
 
