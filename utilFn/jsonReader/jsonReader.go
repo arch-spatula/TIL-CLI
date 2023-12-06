@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -77,4 +78,9 @@ func ReadJson() TILConfig {
 	}
 
 	return tilConfig
+}
+
+func ParseToKey(text, key, val string) string {
+
+	return strings.ReplaceAll(text, "{{"+key+"}}", val)
 }

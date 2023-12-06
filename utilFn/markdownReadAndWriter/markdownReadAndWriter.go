@@ -28,7 +28,10 @@ func WriteMarkdown(createTime time.Time) {
 		defer todayFile.Close()
 
 		// # vue로 만드는 디자인 시스템 23일차
-		title := jsonReader.ReadJson().CurrentProject
+		text := jsonReader.ReadJson().CurrentProject
+		key := "current-project-start-day"
+		diffDays := strconv.Itoa(common.DiffDays(jsonReader.ReadJson().CurrentProjectStartDay))
+		title := jsonReader.ParseToKey(text, key, diffDays)
 
 		// 1일1커밋 무사고: 358일차
 		days := common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay)
