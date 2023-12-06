@@ -4,8 +4,6 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-	"os"
 	"time"
 
 	"github.com/arch-spatula/TIL-CLI/utilFn/markdownReadAndWriter"
@@ -22,37 +20,8 @@ var todayCmd = &cobra.Command{
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		// 이번달 폴더 오늘 TIL 마크다운 파일이름 만들기
-		folder := time.Now().Format("0601")
-		markdown := time.Now().Format("060102")
 
-		if err := os.Mkdir(folder, 0755); !os.IsExist(err) {
-			fmt.Println("이번달 폴더를 만들어두겠습니다.")
-		}
-
-		todayMarkdownFile := folder + "/TIL" + markdown + ".md"
-
-		markdownReadAndWriter.WriteMarkdown(todayMarkdownFile)
-
-		// if _, err := os.Stat(todayMarkdownFile); os.IsNotExist(err) {
-		// 	todayFile, err := os.Create(todayMarkdownFile)
-		// 	if err != nil {
-		// 		fmt.Printf("Unable to write file: %v\n", err)
-		// 	}
-		// 	defer todayFile.Close()
-
-		// 	// template.md 읽기
-		// 	template, err := os.ReadFile("template.md")
-		// 	if err != nil {
-		// 		fmt.Printf("Unable to read file: %v\n", err)
-		// 	}
-
-		// 	// 오늘 TIL에 쓰기
-		// 	fmt.Fprintln(todayFile, string(template))
-
-		// 	fmt.Println(todayMarkdownFile, "을 만들어두겠습니다.")
-		// } else {
-		// 	fmt.Println(todayMarkdownFile, "이 이미 만들어졌습니다.")
-		// }
+		markdownReadAndWriter.WriteMarkdown(time.Now())
 
 	},
 }

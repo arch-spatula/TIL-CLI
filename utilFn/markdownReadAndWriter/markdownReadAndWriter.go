@@ -10,7 +10,16 @@ import (
 	"github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
 )
 
-func WriteMarkdown(fileName string) {
+func WriteMarkdown(createTime time.Time) {
+	folder := createTime.Format("0601")
+	markdown := createTime.Format("060102")
+
+	if err := os.Mkdir(folder, 0755); !os.IsExist(err) {
+		fmt.Println("이번달 폴더를 만들어두겠습니다.")
+	}
+
+	fileName := folder + "/TIL" + markdown + ".md"
+
 	if _, err := os.Stat(fileName); os.IsNotExist(err) {
 		todayFile, err := os.Create(fileName)
 		if err != nil {

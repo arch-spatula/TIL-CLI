@@ -4,12 +4,9 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
-	"io"
-	"os"
 	"time"
 
+	"github.com/arch-spatula/TIL-CLI/utilFn/markdownReadAndWriter"
 	"github.com/spf13/cobra"
 )
 
@@ -24,21 +21,6 @@ var draftCmd = &cobra.Command{
 - tomorrow: 내일 TIL 템플릿을 생성합니다. 2311/TIL231113.md
 - retro:    회고 TIL 템플릿을 생성합니다. 2311/TIL231112Retro.md`,
 	Run: func(cmd *cobra.Command, args []string) {
-		data, err := os.Open("setting.json")
-		if err != nil {
-			panic(`setting.json 파일이 없습니다.
-
-./TIL-CLI init 명령을 먼저 해주세요.`)
-		}
-
-		defer data.Close()
-
-		byteValue, _ := io.ReadAll(data)
-
-		var info map[string]interface{}
-		json.Unmarshal([]byte(byteValue), &info)
-
-		draft := info["draft"]
 
 		// 하위 플래그를 지정하지 않으면 차단
 		if len(args) != 1 {
@@ -49,47 +31,15 @@ draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요.
 ./TIL-CLI draft today`)
 		}
 
-		// title 접근
-		currentProject := info["current-project"]
-		// currentProjectStartToToday =
-		fmt.Println(currentProject)
-		// title parse 처리
-		// diff로 며칠차 차이구하기
-
 		// 실행 차단
 		// return
 		// setting.json에 없는 키워드 접근하면 차단
 		key := args[0]
-		if settingText, ok := draft.(map[string]interface{})[key]; ok {
-			// 이번달 폴더 오늘 TIL 마크다운 파일이름 만들기
-			folder := time.Now().Format("0601")
-			markdown := time.Now().Format("060102")
-
-			if err := os.Mkdir(folder, 0755); !os.IsExist(err) {
-				fmt.Println("이번달 폴더를 만들어두겠습니다.")
-			}
-
-			markdownFileName := folder + "/TIL" + markdown + ".md"
-
-			if _, err := os.Stat(markdownFileName); os.IsNotExist(err) {
-				markdownFile, err := os.Create(markdownFileName)
-				if err != nil {
-					fmt.Printf("Unable to write file: %v\n", err)
-				}
-				defer markdownFile.Close()
-
-				// 오늘 TIL에 쓰기
-				fmt.Fprintln(markdownFile, string(fmt.Sprint(settingText)))
-
-				fmt.Println(markdownFileName, "을 만들어두겠습니다.")
-			} else {
-				fmt.Println(markdownFileName, "이 이미 만들어졌습니다.")
-			}
-
-		} else {
-			panic(`draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요
-
-./TIL-CLI draft today`)
+		if key == "today" {
+			markdownReadAndWriter.WriteMarkdown(time.Now())
+		}
+		if key == "tomorrow" {
+			markdownReadAndWriter.WriteMarkdown(time.Now().AddDate(0, 0, 1))
 		}
 	},
 }
