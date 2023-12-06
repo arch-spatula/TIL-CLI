@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/arch-spatula/TIL-CLI/utilFn/markdownReadAndWriter"
 	"github.com/spf13/cobra"
 )
 
@@ -30,26 +31,28 @@ var todayCmd = &cobra.Command{
 
 		todayMarkdownFile := folder + "/TIL" + markdown + ".md"
 
-		if _, err := os.Stat(todayMarkdownFile); os.IsNotExist(err) {
-			todayFile, err := os.Create(todayMarkdownFile)
-			if err != nil {
-				fmt.Printf("Unable to write file: %v\n", err)
-			}
-			defer todayFile.Close()
+		markdownReadAndWriter.WriteMarkdown(todayMarkdownFile)
 
-			// template.md 읽기
-			template, err := os.ReadFile("template.md")
-			if err != nil {
-				fmt.Printf("Unable to read file: %v\n", err)
-			}
+		// if _, err := os.Stat(todayMarkdownFile); os.IsNotExist(err) {
+		// 	todayFile, err := os.Create(todayMarkdownFile)
+		// 	if err != nil {
+		// 		fmt.Printf("Unable to write file: %v\n", err)
+		// 	}
+		// 	defer todayFile.Close()
 
-			// 오늘 TIL에 쓰기
-			fmt.Fprintln(todayFile, string(template))
+		// 	// template.md 읽기
+		// 	template, err := os.ReadFile("template.md")
+		// 	if err != nil {
+		// 		fmt.Printf("Unable to read file: %v\n", err)
+		// 	}
 
-			fmt.Println(todayMarkdownFile, "을 만들어두겠습니다.")
-		} else {
-			fmt.Println(todayMarkdownFile, "이 이미 만들어졌습니다.")
-		}
+		// 	// 오늘 TIL에 쓰기
+		// 	fmt.Fprintln(todayFile, string(template))
+
+		// 	fmt.Println(todayMarkdownFile, "을 만들어두겠습니다.")
+		// } else {
+		// 	fmt.Println(todayMarkdownFile, "이 이미 만들어졌습니다.")
+		// }
 
 	},
 }

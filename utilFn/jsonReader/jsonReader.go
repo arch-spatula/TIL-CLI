@@ -36,7 +36,7 @@ func WriteJson() {
 
 		var tilConfig TILConfig
 
-		tilConfig.CurrentProject = "진행 중인 프로젝트를 입력해주세요. 지금은 {current-project-start-day}일차입니다.\n\n"
+		tilConfig.CurrentProject = "진행 중인 프로젝트를 입력해주세요. 지금은 {{current-project-start-day}}일차입니다.\n\n"
 		tilConfig.CurrentProjectStartDay = formattedNow
 		tilConfig.ShowCurrentProject = true
 		tilConfig.GratificationFormat = "## 감사일기\n\n1. ???\n\n"
