@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 	"time"
 
+	"github.com/arch-spatula/TIL-CLI/utilFn/common"
 	"github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
 )
 
@@ -22,22 +22,8 @@ func WriteMarkdown(fileName string) {
 		title := jsonReader.ReadJson().CurrentProject
 
 		// 1일1커밋 무사고: 358일차
-		daysWithoutAccidentStrFromJson := strings.Split(fmt.Sprint(jsonReader.ReadJson().DaysWithoutAccidentDay), "-")
-
-		dateBuffer := [3]int{1000, 1, 1}
-		for i, v := range daysWithoutAccidentStrFromJson {
-			num, err := strconv.Atoi(v)
-			if err != nil {
-				panic(err)
-			}
-			dateBuffer[i] = num
-
-		}
-
-		t1 := Date(dateBuffer[0], dateBuffer[1], dateBuffer[2])
-		t2 := Date(time.Now().Year(), int(time.Now().Month()), time.Now().Day())
-		days := t2.Sub(t1).Hours() / 24
-		daysWithoutAccident := "1일1커밋 무사고: " + strconv.Itoa(int(days)) + "일차\n\n"
+		days := common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay)
+		daysWithoutAccident := "1일1커밋 무사고: " + strconv.Itoa(days) + "일차\n\n"
 
 		gratificationDiary := jsonReader.ReadJson().GratificationFormat
 
