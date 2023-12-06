@@ -23,7 +23,7 @@ var draftCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		// 하위 플래그를 지정하지 않으면 차단
-		if len(args) != 1 {
+		if len(args) < 1 {
 			panic(`현재 draft 뒤에 입력한 flag가 없습니다.
 
 draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요.
@@ -33,13 +33,17 @@ draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요.
 
 		// 실행 차단
 		// return
-		// setting.json에 없는 키워드 접근하면 차단
+		// til-config.json에 없는 키워드 접근하면 차단
 		key := args[0]
 		if key == "today" {
 			markdownReadAndWriter.WriteMarkdown(time.Now())
 		}
 		if key == "tomorrow" {
 			markdownReadAndWriter.WriteMarkdown(time.Now().AddDate(0, 0, 1))
+		}
+		if key == "retro" {
+			// @todo: RetroW 뒤에 붙이기 추가
+			markdownReadAndWriter.WriteMarkdown(time.Now())
 		}
 	},
 }

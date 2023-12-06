@@ -30,12 +30,11 @@ func WriteMarkdown(createTime time.Time) {
 		// # vue로 만드는 디자인 시스템 23일차
 		text := jsonReader.ReadJson().CurrentProject
 		key := "current-project-start-day"
-		diffDays := strconv.Itoa(common.DiffDays(jsonReader.ReadJson().CurrentProjectStartDay))
+		diffDays := strconv.Itoa(common.DiffDays(jsonReader.ReadJson().CurrentProjectStartDay, createTime))
 		title := jsonReader.ParseToKey(text, key, diffDays)
 
 		// 1일1커밋 무사고: 358일차
-		days := common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay)
-		daysWithoutAccident := "1일1커밋 무사고: " + strconv.Itoa(days) + "일차\n\n"
+		daysWithoutAccident := jsonReader.ParseToKey(jsonReader.ReadJson().DaysWithoutAccidentFormat, "days-without-accident-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay, createTime)))
 
 		gratificationDiary := jsonReader.ReadJson().GratificationFormat
 
