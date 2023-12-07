@@ -75,7 +75,18 @@ func WriteRetro(createTime time.Time, retroKind string) {
 
 		gratificationDiary := jsonReader.ReadJson().GratificationFormat
 
-		todo := "- [ ] 주간회고\n- [ ] ???\n\n---\n\n"
+		var todo = ""
+
+		switch retroKind {
+		case "W":
+			todo = "- [ ] 주간회고\n- [ ] ???\n\n---\n\n"
+		case "M":
+			todo = "- [ ] 월간 & 주간회고\n- [ ] ???\n\n---\n\n"
+		case "Q":
+			todo = "- [ ] 분기별 & 주간회고\n- [ ] ???\n\n---\n\n"
+		default:
+			panic("없는 플래그입니다.")
+		}
 
 		retro := jsonReader.ReadJson().RetroFormat
 
