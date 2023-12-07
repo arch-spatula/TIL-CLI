@@ -36,9 +36,13 @@ func WriteMarkdown(createTime time.Time) {
 		// 1일1커밋 무사고: 358일차
 		daysWithoutAccident := jsonReader.ParseToKey(jsonReader.ReadJson().DaysWithoutAccidentFormat, "days-without-accident-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay, createTime)))
 
+		// 감사일기
 		gratificationDiary := jsonReader.ReadJson().GratificationFormat
 
-		template := "# " + title + daysWithoutAccident + gratificationDiary
+		// todo
+		todo := jsonReader.ReadJson().TodoFormat
+
+		template := "# " + title + daysWithoutAccident + gratificationDiary + todo
 
 		// 오늘 TIL에 쓰기
 		fmt.Fprintln(todayFile, string(template))

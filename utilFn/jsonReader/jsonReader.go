@@ -18,6 +18,8 @@ type TILConfig struct {
 	DaysWithoutAccidentFormat string `json:"days-without-accident-format"`
 	GratificationFormat       string `json:"gratification-format"`
 	GratificationDiary        bool   `json:"gratification-diary"`
+	Todo                      bool   `json:"todo"`
+	TodoFormat                string `json:"todo-format"`
 	Draft                     struct {
 		Today    string `json:"today"`
 		Tomorrow string `json:"tomorrow"`
@@ -46,6 +48,8 @@ func WriteJson() {
 		tilConfig.DaysWithoutAccidentDay = formattedNow
 		tilConfig.DaysWithoutAccident = true
 		tilConfig.DaysWithoutAccidentFormat = "1일1커밋 무사고: {{days-without-accident-day}}일차\n\n"
+		tilConfig.Todo = true
+		tilConfig.TodoFormat = "## todo\n\n- [ ] ???\n\n---\n\n"
 		tilConfig.Draft.Retro = ""
 		tilConfig.Draft.Today = ""
 		tilConfig.Draft.Tomorrow = ""
