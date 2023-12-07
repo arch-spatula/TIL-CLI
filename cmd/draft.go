@@ -33,8 +33,8 @@ var draftCmd = &cobra.Command{
 - 회고 플래그: retro
 - 회고 유형 플래그: w / m / q
 
-./TIL-CLI draft 		-> 2311/TIL231207.md
-./TIL-CLI sun retro -> 2311/TIL231210RetroW.md
+./TIL-CLI draft 		  -> 2311/TIL231207.md
+./TIL-CLI sun retro   -> 2311/TIL231210RetroW.md
 ./TIL-CLI sun retro q -> 2311/TIL231210RetroQ.md
 
 `,
