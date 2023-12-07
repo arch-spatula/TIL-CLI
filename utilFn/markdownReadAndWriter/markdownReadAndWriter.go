@@ -53,6 +53,42 @@ func WriteMarkdown(createTime time.Time) {
 	}
 }
 
+func WriteRetro(createTime time.Time, retroKind string) {
+	folder := createTime.Format("0601")
+	markdown := createTime.Format("060102")
+
+	if err := os.Mkdir(folder, 0755); !os.IsExist(err) {
+		fmt.Println("이번달 폴더를 만들어두겠습니다.")
+	}
+
+	fileName := folder + "/TIL" + markdown + "Retro" + retroKind + ".md"
+
+	if _, err := os.Stat(fileName); os.IsNotExist(err) {
+		todayFile, err := os.Create(fileName)
+		if err != nil {
+			fmt.Printf("Unable to write file: %v\n", err)
+		}
+		defer todayFile.Close()
+		title := jsonReader.ParseToKey(jsonReader.ReadJson().CurrentProject, "current-project-start-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().CurrentProjectStartDay, createTime)))
+
+		daysWithoutAccident := jsonReader.ParseToKey(jsonReader.ReadJson().DaysWithoutAccidentFormat, "days-without-accident-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay, createTime)))
+
+		gratificationDiary := jsonReader.ReadJson().GratificationFormat
+
+		todo := "- [ ] 주간회고\n- [ ] ???\n\n---\n\n"
+
+		retro := jsonReader.ReadJson().RetroFormat
+
+		template := "# " + title + daysWithoutAccident + gratificationDiary + todo + retro
+
+		fmt.Fprintln(todayFile, string(template))
+
+		fmt.Println(fileName, "을 만들어두겠습니다.")
+	} else {
+		fmt.Println(fileName, "이 이미 만들어졌습니다.")
+	}
+}
+
 func Date(year, month, day int) time.Time {
 	return time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
 }

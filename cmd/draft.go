@@ -10,6 +10,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
+type Weekday int
+
+const (
+	Sunday Weekday = iota
+	Monday
+	Tuesday
+	Wednesday
+	Thursday
+	Friday
+	Saturday
+)
+
 // draftCmd represents the draft command
 var draftCmd = &cobra.Command{
 	Use:              "draft [OPTIONS]",
@@ -31,9 +43,8 @@ draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요.
 ./TIL-CLI draft today`)
 		}
 
-		// 실행 차단
-		// return
-		// til-config.json에 없는 키워드 접근하면 차단
+		// fmt.Println(args)
+
 		key := args[0]
 		if key == "today" {
 			markdownReadAndWriter.WriteMarkdown(time.Now())
@@ -41,9 +52,19 @@ draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요.
 		if key == "tomorrow" {
 			markdownReadAndWriter.WriteMarkdown(time.Now().AddDate(0, 0, 1))
 		}
+
+		if key == "sun" {
+			switch time.Now().Weekday() {
+			case time.Sunday:
+				markdownReadAndWriter.WriteMarkdown(time.Now())
+			default:
+				markdownReadAndWriter.WriteMarkdown(time.Now().AddDate(0, 0, 7-int(time.Now().Weekday())))
+			}
+		}
+
 		if key == "retro" {
 			// @todo: RetroW 뒤에 붙이기 추가
-			markdownReadAndWriter.WriteMarkdown(time.Now())
+			markdownReadAndWriter.WriteRetro(time.Now(), "W")
 		}
 	},
 }
