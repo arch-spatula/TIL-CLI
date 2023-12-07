@@ -5,18 +5,23 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 	"time"
 )
 
 type TILConfig struct {
-	CurrentProject         string `json:"current-project"`
-	CurrentProjectStartDay string `json:"current-project-start-day"`
-	ShowCurrentProject     bool   `json:"show-current-project"`
-	DaysWithoutAccidentDay string `json:"days-without-accident-day"`
-	DaysWithoutAccident    bool   `json:"days-without-accident"`
-	GratificationFormat    string `json:"gratification-format"`
-	GratificationDiary     bool   `json:"gratification-diary"`
-	Draft                  struct {
+	CurrentProject            string `json:"current-project"`
+	CurrentProjectStartDay    string `json:"current-project-start-day"`
+	ShowCurrentProject        bool   `json:"show-current-project"`
+	DaysWithoutAccidentDay    string `json:"days-without-accident-day"`
+	DaysWithoutAccident       bool   `json:"days-without-accident"`
+	DaysWithoutAccidentFormat string `json:"days-without-accident-format"`
+	GratificationFormat       string `json:"gratification-format"`
+	GratificationDiary        bool   `json:"gratification-diary"`
+	Todo                      bool   `json:"todo"`
+	TodoFormat                string `json:"todo-format"`
+	RetroFormat               string `json:"retro-format"`
+	Draft                     struct {
 		Today    string `json:"today"`
 		Tomorrow string `json:"tomorrow"`
 		Retro    string `json:"retro"`
@@ -36,13 +41,17 @@ func WriteJson() {
 
 		var tilConfig TILConfig
 
-		tilConfig.CurrentProject = "진행 중인 프로젝트를 입력해주세요. 지금은 {current-project-start-day}일차입니다.\n\n"
+		tilConfig.CurrentProject = "진행 중인 프로젝트를 입력해주세요. 지금은 {{current-project-start-day}}일차입니다.\n\n"
 		tilConfig.CurrentProjectStartDay = formattedNow
 		tilConfig.ShowCurrentProject = true
 		tilConfig.GratificationFormat = "## 감사일기\n\n1. ???\n\n"
 		tilConfig.GratificationDiary = true
 		tilConfig.DaysWithoutAccidentDay = formattedNow
 		tilConfig.DaysWithoutAccident = true
+		tilConfig.DaysWithoutAccidentFormat = "1일1커밋 무사고: {{days-without-accident-day}}일차\n\n"
+		tilConfig.Todo = true
+		tilConfig.TodoFormat = "## todo\n\n- [ ] ???\n\n---\n\n"
+		tilConfig.RetroFormat = "## 주간 회고\n\n### Liked\n\n-\n\n### Learned\n\n-\n\n### Lacked\n\n-\n\n### Longed(잘하기 위해 필요한 것)\n\n-\n\n### Action Item\n\n- [ ]"
 		tilConfig.Draft.Retro = ""
 		tilConfig.Draft.Today = ""
 		tilConfig.Draft.Tomorrow = ""
@@ -77,4 +86,20 @@ func ReadJson() TILConfig {
 	}
 
 	return tilConfig
+}
+
+func ParseToKey(text, key, val string) string {
+	// result := ""
+
+	// values := reflect.ValueOf(ReadJson())
+	// types := values.Type()
+	// // 순회
+	// for i := 0; i < values.NumField(); i++ {
+	// 	//   변환
+	// 	fmt.Println(types.Field(i).Index[0], types.Field(i).Name, values.Field(i))
+	// }
+	// fmt.Println(result)
+
+	// 최종 반환
+	return strings.ReplaceAll(text, "{{"+key+"}}", val)
 }

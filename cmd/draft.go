@@ -4,13 +4,22 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
-	"io"
-	"os"
 	"time"
 
+	"github.com/arch-spatula/TIL-CLI/utilFn/markdownReadAndWriter"
 	"github.com/spf13/cobra"
+)
+
+type Weekday int
+
+const (
+	Sunday Weekday = iota
+	Monday
+	Tuesday
+	Wednesday
+	Thursday
+	Friday
+	Saturday
 )
 
 // draftCmd represents the draft command
@@ -18,79 +27,155 @@ var draftCmd = &cobra.Command{
 	Use:              "draft [OPTIONS]",
 	TraverseChildren: true,
 	Short:            "draft (today/tomorrow/retro) 3가지 파일 중 1개 생성",
-	Long: `예를 들어 오늘이 2023년 11월 12일이면 다음처첨 생성합니다.
+	Long: `3개의 플래그를 조합해서 사용하기 바랍니다.
 
-- today:    오늘 TIL 템플릿을 생성합니다. 2311/TIL231112.md
-- tomorrow: 내일 TIL 템플릿을 생성합니다. 2311/TIL231113.md
-- retro:    회고 TIL 템플릿을 생성합니다. 2311/TIL231112Retro.md`,
+- 시점 플래그: today / tomorrow / sun
+- 회고 플래그: retro
+- 회고 유형 플래그: w / m / q
+
+./TIL-CLI draft 		  -> 2311/TIL231207.md
+./TIL-CLI sun retro   -> 2311/TIL231210RetroW.md
+./TIL-CLI sun retro q -> 2311/TIL231210RetroQ.md
+
+`,
 	Run: func(cmd *cobra.Command, args []string) {
-		data, err := os.Open("setting.json")
-		if err != nil {
-			panic(`setting.json 파일이 없습니다.
-
-./TIL-CLI init 명령을 먼저 해주세요.`)
+		// ./TIL-CLI draft (today)
+		if len(args) == 0 {
+			markdownReadAndWriter.WriteMarkdown(time.Now())
+			return
 		}
 
-		defer data.Close()
-
-		byteValue, _ := io.ReadAll(data)
-
-		var info map[string]interface{}
-		json.Unmarshal([]byte(byteValue), &info)
-
-		draft := info["draft"]
-
-		// 하위 플래그를 지정하지 않으면 차단
-		if len(args) != 1 {
-			panic(`현재 draft 뒤에 입력한 flag가 없습니다.
-
-draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요.
-
-./TIL-CLI draft today`)
+		if args[0] != "retro" && args[0] != "today" && args[0] != "tomorrow" && args[0] != "sun" {
+			panic("없는 플래그")
 		}
 
-		// title 접근
-		currentProject := info["current-project"]
-		// currentProjectStartToToday =
-		fmt.Println(currentProject)
-		// title parse 처리
-		// diff로 며칠차 차이구하기
-
-		// 실행 차단
-		// return
-		// setting.json에 없는 키워드 접근하면 차단
-		key := args[0]
-		if settingText, ok := draft.(map[string]interface{})[key]; ok {
-			// 이번달 폴더 오늘 TIL 마크다운 파일이름 만들기
-			folder := time.Now().Format("0601")
-			markdown := time.Now().Format("060102")
-
-			if err := os.Mkdir(folder, 0755); !os.IsExist(err) {
-				fmt.Println("이번달 폴더를 만들어두겠습니다.")
+		// ./TIL-CLI draft (today) retro (w)
+		// ./TIL-CLI draft (today) retro m
+		// ./TIL-CLI draft (today) retro q
+		if args[0] == "retro" {
+			if len(args) <= 1 {
+				markdownReadAndWriter.WriteRetro(time.Now(), "W")
+				return
 			}
+			switch args[1] {
+			case "w":
+				markdownReadAndWriter.WriteRetro(time.Now(), "W")
+			case "m":
+				markdownReadAndWriter.WriteRetro(time.Now(), "M")
+			case "q":
+				markdownReadAndWriter.WriteRetro(time.Now(), "Q")
+			default:
+				panic("없는 플래그입니다.")
+			}
+		}
 
-			markdownFileName := folder + "/TIL" + markdown + ".md"
-
-			if _, err := os.Stat(markdownFileName); os.IsNotExist(err) {
-				markdownFile, err := os.Create(markdownFileName)
-				if err != nil {
-					fmt.Printf("Unable to write file: %v\n", err)
+		// ./TIL-CLI draft today
+		// ./TIL-CLI draft today retro (w)
+		// ./TIL-CLI draft today retro m
+		// ./TIL-CLI draft today retro q
+		if args[0] == "today" {
+			if len(args) == 1 {
+				markdownReadAndWriter.WriteMarkdown(time.Now())
+				return
+			} else if len(args) == 2 {
+				if args[1] != "retro" {
+					panic("없는 명령입니다.")
 				}
-				defer markdownFile.Close()
-
-				// 오늘 TIL에 쓰기
-				fmt.Fprintln(markdownFile, string(fmt.Sprint(settingText)))
-
-				fmt.Println(markdownFileName, "을 만들어두겠습니다.")
-			} else {
-				fmt.Println(markdownFileName, "이 이미 만들어졌습니다.")
+				markdownReadAndWriter.WriteRetro(time.Now(), "W")
+			} else if len(args) == 3 {
+				switch args[2] {
+				case "w":
+					markdownReadAndWriter.WriteRetro(time.Now(), "W")
+				case "m":
+					markdownReadAndWriter.WriteRetro(time.Now(), "M")
+				case "q":
+					markdownReadAndWriter.WriteRetro(time.Now(), "Q")
+				default:
+					panic("없는 플래그입니다.")
+				}
 			}
-
-		} else {
-			panic(`draft 뒤에 today, tomorrow, retro 중 하나를 입력해주세요
-
-./TIL-CLI draft today`)
 		}
+
+		// ./TIL-CLI draft tomorrow
+		// ./TIL-CLI draft tomorrow retro (w)
+		// ./TIL-CLI draft tomorrow retro m
+		// ./TIL-CLI draft tomorrow retro q
+		if args[0] == "tomorrow" {
+			if len(args) == 1 {
+				markdownReadAndWriter.WriteMarkdown(time.Now().AddDate(0, 0, 1))
+				return
+			} else if len(args) == 2 {
+				if args[1] != "retro" {
+					panic("없는 명령입니다.")
+				}
+				markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 1), "W")
+			} else if len(args) == 3 {
+				switch args[2] {
+				case "w":
+					markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 1), "W")
+				case "m":
+					markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 1), "M")
+				case "q":
+					markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 1), "Q")
+				default:
+					panic("없는 플래그입니다.")
+				}
+			}
+		}
+
+		// ./TIL-CLI draft sun
+		// ./TIL-CLI draft sun retro (w)
+		// ./TIL-CLI draft sun retro m
+		// ./TIL-CLI draft sun retro q
+		if args[0] == "sun" {
+			if len(args) == 1 {
+				switch time.Now().Weekday() {
+				case time.Sunday:
+					markdownReadAndWriter.WriteMarkdown(time.Now())
+				default:
+					markdownReadAndWriter.WriteMarkdown(time.Now().AddDate(0, 0, 7-int(time.Now().Weekday())))
+				}
+				return
+			} else if len(args) == 2 {
+				if args[1] != "retro" {
+					panic("없는 명령입니다.")
+				}
+				switch time.Now().Weekday() {
+				case time.Sunday:
+					markdownReadAndWriter.WriteRetro(time.Now(), "W")
+				default:
+					markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 7-int(time.Now().Weekday())), "W")
+				}
+			} else if len(args) == 3 {
+				switch args[2] {
+				case "w":
+					switch time.Now().Weekday() {
+					case time.Sunday:
+						markdownReadAndWriter.WriteRetro(time.Now(), "W")
+					default:
+						markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 7-int(time.Now().Weekday())), "W")
+					}
+				case "m":
+					switch time.Now().Weekday() {
+					case time.Sunday:
+						markdownReadAndWriter.WriteRetro(time.Now(), "M")
+					default:
+						markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 7-int(time.Now().Weekday())), "M")
+					}
+					markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 1), "M")
+				case "q":
+					switch time.Now().Weekday() {
+					case time.Sunday:
+						markdownReadAndWriter.WriteRetro(time.Now(), "Q")
+					default:
+						markdownReadAndWriter.WriteRetro(time.Now().AddDate(0, 0, 7-int(time.Now().Weekday())), "Q")
+					}
+				default:
+					panic("없는 플래그입니다.")
+				}
+			}
+		}
+
 	},
 }
 
