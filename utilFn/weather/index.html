@@ -1,0 +1,5159 @@
+<!DOCTYPE html>
+<html lang="ko" data-platform="pc" data-useragent="go-http-client/2.0" class="">
+  <!-- 네이버 날씨 참고자료 -->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta property="og:title" content="네이버 날씨" />
+    <meta property="og:url" content="http://weather.naver.com/today" />
+    <meta
+      property="og:image"
+      content="https://ssl.pstatic.net/static/weather/image/img_og_weather_400x210.png"
+    />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="420" />
+    <meta
+      property="og:description"
+      content="국내외 날씨와 미세먼지에 대한 종합정보 제공"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://ssl.pstatic.net/static/weather/image/nFavicon32.svg"
+      type="image/x-icon"
+    />
+    <link
+      rel="preload"
+      href="https://ssl.pstatic.net/static/weather/font/NotoSans-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="https://ssl.pstatic.net/static/weather/font/NotoSans-Light.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="https://ssl.pstatic.net/static/weather/font/NotoSans-Medium.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="https://ssl.pstatic.net/static/weather/font/NotoSans-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="https://ssl.pstatic.net/static/weather/font/Roboto-Light.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="https://ssl.pstatic.net/static/weather/font/Roboto-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="https://ssl.pstatic.net/static/weather/font/Roboto-Medium.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="https://ssl.pstatic.net/static/weather/font/Roboto-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="https://ssl.pstatic.net/static/weather/web_icon/web_iOS_iPhone_2x_120X120.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="152x152"
+      href="https://ssl.pstatic.net/static/weather/web_icon/web_iOS_iPad_2x_152X152.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="167x167"
+      href="https://ssl.pstatic.net/static/weather/web_icon/web_iOS_iPadPro_2x_167X167.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="180x180"
+      href="https://ssl.pstatic.net/static/weather/web_icon/web_iOS_iPhone_3x_180X180.png"
+    />
+    <title>네이버 날씨</title>
+    <script>
+      var devCssBranch = 'develop';
+    </script>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.7.1/billboard.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://ssl.pstatic.net/staticv2.weather/responsive/css/weather_webfont_202311231130.css"
+    />
+  </head>
+  <body>
+    <div id="u_skip">
+      <a
+        href="#container"
+        onclick="document.getElementById('container').tabIndex=-1;document.getElementById('container').focus();return false;"
+        >본문 바로가기</a
+      >
+    </div>
+    <div id="wrap" data-region-code="15133580" class="">
+      <!-- js 렌딩으로 개선 -->
+      <div id="header" role="banner">
+        <div class="inner_header">
+          <div class="lnb_area" role="menubar">
+            <h1 class="logo_area">
+              <a
+                href="https://www.naver.com"
+                class="logo"
+                onclick="nclk_v2(this, 'gnb.naver', '', '')"
+                ><span class="blind">NAVER</span></a
+              >
+              <a
+                href="/today/15133580"
+                class="page_name"
+                onclick="nclk_v2(this, 'gnb.weathertab', '', '')"
+                >날씨</a
+              >
+            </h1>
+            <div class="menu_area">
+              <ul class="lnb" role="menubar">
+                <li class="item home on" role="presentation">
+                  <a
+                    href="/today/15133580"
+                    class="menu"
+                    role="menuitem"
+                    onclick="nclk_v2(this, 'gnb.home', '', '')"
+                    >홈</a
+                  >
+                </li>
+                <li class="item" role="presentation">
+                  <a
+                    href="/compare/15133580"
+                    class="menu"
+                    role="menuitem"
+                    onclick="nclk_v2(this, 'gnb.compare', '', '')"
+                    >예보비교</a
+                  >
+                </li>
+                <li class="item" role="presentation">
+                  <a
+                    href="/air/15133580"
+                    class="menu"
+                    role="menuitem"
+                    onclick="nclk_v2(this, 'gnb.dusttab', '', '')"
+                    >미세먼지</a
+                  >
+                </li>
+                <li class="item" role="presentation">
+                  <a
+                    href="/map/15133580"
+                    class="menu"
+                    role="menuitem"
+                    onclick="nclk_v2(this, 'gnb.map', '', '')"
+                  >
+                    지도</a
+                  >
+                </li>
+                <li class="item" role="presentation">
+                  <a
+                    href="/video/15133580"
+                    class="menu"
+                    role="menuitem"
+                    onclick="nclk_v2(this, 'gnb.video', '', '')"
+                  >
+                    영상</a
+                  >
+                </li>
+                <li class="item new" role="presentation">
+                  <a
+                    href="/warning/15133580"
+                    class="menu"
+                    role="menuitem"
+                    onclick="nclk_v2(this, 'gnb.warning', '', '')"
+                    >기상특보</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="gnb_group">
+              <div id="gnb"></div>
+            </div>
+            <div class="button_group">
+              <button
+                type="button"
+                class="btn_search _cnSearchPopup"
+                onclick="nclk_v2(this, 'gnb.search', '', '')"
+              >
+                <span class="icon_animation">
+                  <span class="icon_search"></span>
+                </span>
+                <span class="blind">검색 펼치기</span>
+              </button>
+              <div class="layer_search">
+                <h2 class="blind">도시 별 날씨 검색</h2>
+                <div class="layer_content">
+                  <div class="form_wrap">
+                    <form
+                      name="search"
+                      role="search"
+                      onsubmit="$('.search_inner .btn_search').trigger('click'); return false;"
+                    >
+                      <span class="search_inner">
+                        <input
+                          id="_idSearchInput"
+                          type="search"
+                          placeholder="국내, 해외도시를 검색해보세요."
+                          title="도시 검색창"
+                          autocomplete="off"
+                          class="search_input"
+                        />
+                        <span class="focus_border_white"></span>
+                        <button
+                          type="submit"
+                          class="btn_search _cnSearchSubmit"
+                          onclick="nclk_v2(this, 'sch.schbut', '', '')"
+                        >
+                          <span class="blind">검색</span>
+                        </button>
+                        <button
+                          type="reset"
+                          class="btn_cancle"
+                          onclick="nclk_v2(this, 'sch.schclose', '', '')"
+                        >
+                          <span class="blind">검색 취소</span>
+                        </button>
+                      </span>
+                    </form>
+                  </div>
+                  <div id="_idSearchRecent" class="weather_list_area">
+                    <h2 class="blind">최근 검색 지역 목록</h2>
+                    <div class="scroll_control end_left">
+                      <div
+                        class="scroll_area"
+                        data-name="recentRegion"
+                        data-click="false"
+                      >
+                        <ul class="card_list">
+                          <li class="card_item nation active">
+                            <a href="/today?targetId=nation" class="link_nation"
+                              ><strong>전국 날씨 바로가기</strong></a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                      <button type="button" class="btn_prev">
+                        <span class="blind">이전 보기</span>
+                      </button>
+                      <button type="button" class="btn_next">
+                        <span class="blind">다음 보기</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    id="_idAutoCompleted"
+                    class="_cnSearchContainer keyword_autocomplete hide"
+                  >
+                    <h2 class="blind">검색어 자동 완성</h2>
+                    <ul class="keyword_list"></ul>
+                  </div>
+                  <div
+                    id="_idsearchResultContainer"
+                    class="_cnSearchContainer search_result hide"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="container" role="main" class="is_today korean">
+        <div id="content">
+          <div class="section_wrap">
+            <div class="section_center">
+              <div id="now" class="card card card_today_weather">
+                <h2 class="blind">현재 날씨</h2>
+                <div class="today_weather">
+                  <div class="cp_area">
+                    <span class="blind">날씨 제공사 설정</span>
+                    <ul class="list_cp">
+                      <li class="item kma on">
+                        <button
+                          type="button"
+                          class="button"
+                          data-cp-name="KMA"
+                          onclick="nclk_v2(this, 'wtk.cpskmi', '', '')"
+                          aria-selected="true"
+                        >
+                          <span class="cp_text">기상청</span>
+                        </button>
+                      </li>
+                      <li class="item accuweather">
+                        <button
+                          type="button"
+                          class="button"
+                          data-cp-name="ACCUWEATHER"
+                          onclick="nclk_v2(this, 'wtk.cpsacc', '', '')"
+                          aria-selected="false"
+                        >
+                          <span class="cp_text">아큐웨더</span>
+                        </button>
+                      </li>
+                      <li class="item twc">
+                        <button
+                          type="button"
+                          class="button"
+                          data-cp-name="TWC"
+                          onclick="nclk_v2(this, 'wtk.cpstwc', '', '')"
+                          aria-selected="false"
+                        >
+                          <span class="cp_text">웨더채널</span>
+                        </button>
+                      </li>
+                      <li class="item weathernews">
+                        <button
+                          type="button"
+                          class="button"
+                          data-cp-name="WEATHERNEWS"
+                          onclick="nclk_v2(this, 'wtk.cpswni', '', '')"
+                          aria-selected="false"
+                        >
+                          <span class="cp_text">웨더뉴스</span>
+                        </button>
+                      </li>
+                    </ul>
+                    <div class="btn_area">
+                      <button
+                        type="button"
+                        class="btn_compare"
+                        onclick="nclk_v2(this, 'wtk.cpsmore', '', '')"
+                      >
+                        <span class="text">예보비교</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="location_info_area">
+                    <div class="location_area">
+                      <span class="blind">현위치</span>
+                      <span class="provider_badge on">기상청</span>
+                      <span class="provider_badge accuweather">아큐웨더</span>
+                      <span class="provider_badge weatherchannel"
+                        >웨더채널</span
+                      >
+                      <span class="provider_badge weathernews">웨더뉴스</span>
+                      <strong class="location_name">서북구 부성1동</strong>
+                      <button
+                        type="button"
+                        class="btn_location"
+                        data-loading-class="loading"
+                        onclick="nclk_v2(this, 'gnb.curloc', '', '')"
+                      >
+                        <span class="blind">내위치 찾기</span>
+                      </button>
+                    </div>
+                    <div class="cctv_link_area">
+                      <a
+                        href="/map/15133580?cctv=true"
+                        class="cctv_link"
+                        onclick="nclk_v2(this, 'wtk.cctvbut', '', '')"
+                        >CCTV</a
+                      >
+                    </div>
+                  </div>
+
+                  <div class="weather_area">
+                    <div class="weather_now">
+                      <div class="summary_img">
+                        <i
+                          class="ico_animation _cnLazy"
+                          data-ico="ico_animation_wt5"
+                          data-ymdt="2023120910"
+                          data-tooltip="구름많음"
+                        ></i>
+                        <strong class="current">
+                          <span class="blind">현재 온도</span>17.0<span
+                            class="degree"
+                            >°</span
+                          >
+                        </strong>
+                      </div>
+                      <p class="summary">
+                        <span class="weather">구름많음</span>
+                        <em>어제보다</em>
+                        <span class="temperature up"
+                          >3.6° <span class="blind">높아요</span></span
+                        >
+                      </p>
+                    </div>
+
+                    <div class="weather_quick_area">
+                      <div class="scroll_control end_left">
+                        <div
+                          class="scroll_area"
+                          data-name="weather_quick"
+                          data-click="false"
+                          data-nclk="wtk.todscr"
+                        >
+                          <div class="weather_quick_wrap"></div>
+                        </div>
+                        <div class="tab_list"></div>
+                        <button
+                          type="button"
+                          class="btn_prev"
+                          onclick="nclk_v2(this, 'wtk.todclk', '', '')"
+                        >
+                          <span class="blind">이전 보기</span>
+                        </button>
+                        <button
+                          type="button"
+                          class="btn_next"
+                          onclick="nclk_v2(this, 'wtk.todclk', '', '')"
+                        >
+                          <span class="blind">다음 보기</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="hourly" class="card card_weather_graph">
+                <div class="weather_graph">
+                  <div class="scroll_control end_left _cnHourlyTmpr">
+                    <div
+                      class="scroll_area"
+                      data-name="hourly"
+                      data-click="false"
+                      data-nclk="wtk.hourscr"
+                    >
+                      <div class="weather_table_wrap">
+                        <table>
+                          <caption>
+                            <span class="blind"
+                              >시간별 날씨 정보를 제공하는 표</span
+                            >
+                          </caption>
+                          <thead>
+                            <tr class="thead _cnTimeTable">
+                              <th class="data heading _cnHourlyTimetableTh">
+                                <!-- js 랜딩으로 개선 -->
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="_cnHourly">
+                            <tr>
+                              <td colspan="62">
+                                <div
+                                  class="chart_area"
+                                  aria-hidden="true"
+                                ></div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      class="btn_prev"
+                      onclick="nclk_v2(this, 'wtk.hourarclk', '', '')"
+                    >
+                      <span class="blind">이전 보기</span>
+                    </button>
+                    <button
+                      type="button"
+                      class="btn_next"
+                      onclick="nclk_v2(this, 'wtk.hourarclk', '', '')"
+                    >
+                      <span class="blind">다음 보기</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="offer_area">
+                  <div class="offer_wrap">
+                    <span class="offer">날씨아이콘</span>
+                    <strong class="help_icon"
+                      ><button
+                        type="button"
+                        class="ico_help"
+                        onclick="nclk_v2(this, 'wtk.houricn', '', '')"
+                      >
+                        <span class="blind">도움말</span>
+                      </button></strong
+                    >
+                    <div class="ly_help">
+                      <strong class="ly_ttl">날씨아이콘</strong>
+                      <span class="desc">기온단위 (℃)</span>
+                      <ul class="weather_list"></ul>
+                      <button
+                        type="button"
+                        class="btn_close"
+                        onclick="nclk_v2(this, 'wtk.houricn', '', '')"
+                      >
+                        <span class="blind">도움말 닫기</span>
+                      </button>
+                    </div>
+                    <span class="offer">시간별 예보 기준</span>
+                    <strong class="help_icon"
+                      ><button
+                        type="button"
+                        class="ico_help"
+                        onclick="nclk_v2(this, 'wtk.hourstd', '', '')"
+                      >
+                        <span class="blind">도움말</span>
+                      </button></strong
+                    >
+                    <div class="ly_help standard">
+                      <strong class="ly_tit">시간별 예보 기준</strong>
+                      <em class="update_time"
+                        >현재날씨 및 1시간 예보 2023.12.09. 10:30, 시간별 예보
+                        2023.12.09. 08:00, 주간예보 2023.12.09. 08:58</em
+                      >
+                      <p class="dsc">
+                        네이버 날씨는 각 정시 위에 날씨를 표현하나 날씨 요소 별
+                        특성에 따라 구간 또는 정시기준이 다릅니다. 이를 참고해
+                        날씨 데이터를 해석하시기 바랍니다.
+                      </p>
+                      <ul class="ly_list">
+                        <li>
+                          <i class="icon ico_wt3"></i>
+                          <dl>
+                            <dt>날씨 : 이전 1시간</dt>
+                            <dd>예) 19시는 18시 01분~19시 00분</dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <i class="icon temperature">13°</i>
+                          <dl>
+                            <dt>기온 : 정시</dt>
+                            <dd>예) 19시는 19시 정시 기온</dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <i class="icon rain"></i>
+                          <dl>
+                            <dt>강수량, 강수확률: 이전 1시간</dt>
+                            <dd>예) 19시는 18시 01분~19시 00분</dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <i class="icon wind"></i>
+                          <dl>
+                            <dt>바람: 정시</dt>
+                            <dd>예) 19시는 19시 정시 기준 풍향과 풍속</dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <i class="icon humidity"></i>
+                          <dl>
+                            <dt>습도: 정시</dt>
+                            <dd>예) 19시는 19시 정시 기준 습도</dd>
+                          </dl>
+                        </li>
+                      </ul>
+                      <button
+                        type="button"
+                        class="btn_close"
+                        onclick="nclk_v2(this, 'wtk.hourstd', '', '')"
+                      >
+                        <span class="blind">닫기</span>
+                      </button>
+                    </div>
+                    <span class="offer_update">2023.12.09. 11:41 업데이트</span>
+                  </div>
+                  <div class="scroll_control favorite end_left">
+                    <div
+                      class="scroll_area"
+                      data-name="keyword"
+                      data-click="false"
+                    >
+                      <ul class="favorite_list">
+                        <li>
+                          <a
+                            href="/today/15133580?targetId=weekly"
+                            class="favorite_link"
+                            onclick="nclk_v2(this, 'wtk.weathertag', '', '')"
+                            >이번 주말 날씨는?</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/air/15133580"
+                            class="favorite_link"
+                            onclick="nclk_v2(this, 'wtk.weathertag', '', '')"
+                            >오늘 미세먼지는 어때?</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            class="favorite_link _cnTomorrowHourly"
+                            onclick="nclk_v2(this, 'wtk.weathertag', '', '')"
+                            >내일 날씨</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/today/15133580?targetId=nation"
+                            class="favorite_link"
+                            onclick="nclk_v2(this, 'wtk.weathertag', '', '')"
+                            >지금 전국날씨는?</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/video/15133580"
+                            class="favorite_link"
+                            onclick="nclk_v2(this, 'wtk.weathertag', '', '')"
+                            >영상으로 보는 날씨</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/map/15133580?cctv=true"
+                            class="favorite_link cctv"
+                            onclick="nclk_v2(this, 'wtk.cctvtag', '', '')"
+                            >지금 도로상황은?</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <button type="button" class="btn_prev">
+                      <span class="blind">이전 보기</span>
+                    </button>
+                    <button type="button" class="btn_next">
+                      <span class="blind">다음 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div id="weekly" class="card card_week">
+                <h2 class="title kma">주간예보</h2>
+                <strong class="help_icon"
+                  ><button
+                    type="button"
+                    class="ico_help"
+                    onclick="nclk_v2(this, 'wtk.weekicn', '', '')"
+                  >
+                    <span class="blind">도움말</span>
+                  </button></strong
+                >
+                <div class="ly_help">
+                  <strong class="ly_ttl">날씨아이콘</strong>
+                  <span class="desc">기온단위 (℃)</span>
+                  <ul class="weather_list"></ul>
+                  <button
+                    class="btn_close"
+                    onclick="nclk_v2(this, 'wtw.weekicn', '', '')"
+                  >
+                    <span class="blind">도움말 닫기</span>
+                  </button>
+                </div>
+                <ul class="box_color">
+                  <li class="item">
+                    <div class="day_data">
+                      <div class="cell_date">
+                        <span class="date_inner">
+                          <strong class="day">오늘</strong
+                          ><span class="date">12.09.</span>
+                        </span>
+                      </div>
+                      <div class="cell_weather">
+                        <span class="weather_inner">
+                          <strong class="inner_text left">
+                            <span class="timeslot">오전</span>
+                            <span class="rainfall"
+                              ><span class="blind">강수확률</span>20%</span
+                            >
+                          </strong>
+                          <i
+                            class="ico _cnLazy"
+                            data-ico="ico_wt5"
+                            data-tooltip="구름많음"
+                          ></i
+                          ><span class="weather_text">구름많음</span>
+                        </span>
+                        <span class="weather_inner">
+                          <i
+                            class="ico _cnLazy"
+                            data-ico="ico_wt5"
+                            data-tooltip="구름많음"
+                          ></i
+                          ><span class="weather_text">구름많음</span>
+                          <strong class="inner_text">
+                            <span class="timeslot">오후</span>
+                            <span class="rainfall"
+                              ><span class="blind">강수확률</span>20%</span
+                            >
+                          </strong>
+                        </span>
+                      </div>
+                      <div class="cell_temperature">
+                        <strong class="temperature">
+                          <span class="lowest"
+                            ><span class="blind">최저기온</span>8°</span
+                          >
+                          <span class="bar">/</span>
+                          <span class="highest"
+                            ><span class="blind">최고기온</span>18°</span
+                          >
+                        </strong>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div class="day_data">
+                      <div class="cell_date">
+                        <span class="date_inner">
+                          <strong class="day">내일</strong
+                          ><span class="date">12.10.</span>
+                        </span>
+                      </div>
+                      <div class="cell_weather">
+                        <span class="weather_inner">
+                          <strong class="inner_text left">
+                            <span class="timeslot">오전</span>
+                            <span class="rainfall none"
+                              ><span class="blind">강수확률</span>0%</span
+                            >
+                          </strong>
+                          <i
+                            class="ico _cnLazy"
+                            data-ico="ico_wt1"
+                            data-tooltip="맑음"
+                          ></i
+                          ><span class="weather_text">맑음</span>
+                        </span>
+                        <span class="weather_inner">
+                          <i
+                            class="ico _cnLazy"
+                            data-ico="ico_wt5"
+                            data-tooltip="구름많음"
+                          ></i
+                          ><span class="weather_text">구름많음</span>
+                          <strong class="inner_text">
+                            <span class="timeslot">오후</span>
+                            <span class="rainfall"
+                              ><span class="blind">강수확률</span>20%</span
+                            >
+                          </strong>
+                        </span>
+                      </div>
+                      <div class="cell_temperature">
+                        <strong class="temperature">
+                          <span class="lowest"
+                            ><span class="blind">최저기온</span>7°</span
+                          >
+                          <span class="bar">/</span>
+                          <span class="highest"
+                            ><span class="blind">최고기온</span>15°</span
+                          >
+                        </strong>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="scroll_control end_left">
+                  <div
+                    class="scroll_area"
+                    data-name="weekly"
+                    data-click="false"
+                    data-nclk="wtk.weekscr"
+                  >
+                    <ul class="week_list _cnWeeklyFcastList">
+                      <li class="week_item today tablet_none">
+                        <div class="day_data">
+                          <div class="cell_date">
+                            <span class="date_inner">
+                              <strong class="day">오늘</strong
+                              ><span class="date">12.09.</span>
+                            </span>
+                          </div>
+                          <div class="cell_weather">
+                            <span
+                              class="weather_inner"
+                              data-wetr-cd="5"
+                              data-wetr-txt="구름많음"
+                            >
+                              <strong class="inner_text left">
+                                <span class="timeslot">오전</span>
+                                <span class="rainfall"
+                                  ><span class="blind">강수확률</span>20%</span
+                                >
+                              </strong>
+                              <i
+                                class="ico _cnLazy"
+                                data-ico="ico_wt5"
+                                data-tooltip="구름많음"
+                                ><span class="blind">구름많음</span></i
+                              >
+                            </span>
+                            <span
+                              class="weather_inner"
+                              data-wetr-cd="5"
+                              data-wetr-txt="구름많음"
+                            >
+                              <i
+                                class="ico _cnLazy"
+                                data-ico="ico_wt5"
+                                data-tooltip="구름많음"
+                                ><span class="blind">구름많음</span></i
+                              >
+                              <strong class="inner_text">
+                                <span class="timeslot">오후</span>
+                                <span class="rainfall"
+                                  ><span class="blind">강수확률</span>20%</span
+                                >
+                              </strong>
+                            </span>
+                          </div>
+                          <div class="cell_temperature">
+                            <strong class="temperature">
+                              <span class="lowest"
+                                ><span class="blind">최저기온</span>8°</span
+                              >
+                              <span class="bar">/</span>
+                              <span class="highest"
+                                ><span class="blind">최고기온</span>18°</span
+                              >
+                            </strong>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="week_item tablet_none">
+                        <div class="day_data">
+                          <div class="cell_date">
+                            <span class="date_inner">
+                              <strong class="day">내일</strong
+                              ><span class="date">12.10.</span>
+                            </span>
+                          </div>
+                          <div class="cell_weather">
+                            <span
+                              class="weather_inner"
+                              data-wetr-cd="1"
+                              data-wetr-txt="맑음"
+                            >
+                              <strong class="inner_text left">
+                                <span class="timeslot">오전</span>
+                                <span class="rainfall none"
+                                  ><span class="blind">강수확률</span>0%</span
+                                >
+                              </strong>
+                              <i
+                                class="ico _cnLazy"
+                                data-ico="ico_wt1"
+                                data-tooltip="맑음"
+                                ><span class="blind">맑음</span></i
+                              >
+                            </span>
+                            <span
+                              class="weather_inner"
+                              data-wetr-cd="5"
+                              data-wetr-txt="구름많음"
+                            >
+                              <i
+                                class="ico _cnLazy"
+                                data-ico="ico_wt5"
+                                data-tooltip="구름많음"
+                                ><span class="blind">구름많음</span></i
+                              >
+                              <strong class="inner_text">
+                                <span class="timeslot">오후</span>
+                                <span class="rainfall"
+                                  ><span class="blind">강수확률</span>20%</span
+                                >
+                              </strong>
+                            </span>
+                          </div>
+                          <div class="cell_temperature">
+                            <strong class="temperature">
+                              <span class="lowest"
+                                ><span class="blind">최저기온</span>7°</span
+                              >
+                              <span class="bar">/</span>
+                              <span class="highest"
+                                ><span class="blind">최고기온</span>15°</span
+                              >
+                            </strong>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- js 렌딩으로 개선 -->
+                    </ul>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn_prev"
+                    onclick="nclk_v2(this, 'wtk.weekarclk', '', '')"
+                  >
+                    <span class="blind">이전 보기</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn_next"
+                    onclick="nclk_v2(this, 'wtk.weekarclk', '', '')"
+                  >
+                    <span class="blind">다음 보기</span>
+                  </button>
+                </div>
+                <p class="offer_area">
+                  <span
+                    >기상청은 자정에서 정오 전이 오전, 정오에서 자정 전이
+                    오후이고, 해외 제공사는 일출부터 일몰 전이 낮, 일몰부터 일출
+                    전이 밤입니다.</span
+                  >
+                  <a
+                    href="https://blog.naver.com/naver_weather/222199399966"
+                    class="link_more"
+                    target="_blank"
+                    >자세히보기</a
+                  >
+                </p>
+              </div>
+              <!-- 광고 -->
+              <div class="card card_advertisement">
+                <div id="_idAD_weather" data-veta-preview="weather_01"></div>
+              </div>
+              <!-- 생활보건지수 -->
+              <div id="lifeIndex" class="card card_figure">
+                <h2 class="title">오늘의 생활·보건 지수</h2>
+                <strong class="help_icon">
+                  <button
+                    type="button"
+                    class="ico_help"
+                    onclick="nclk_v2(this, 'wtk.lifindicn', '', '')"
+                  >
+                    <span class="blind">도움말</span>
+                  </button>
+                </strong>
+                <div class="ly_help">
+                  <ul class="_cnLifeIndexLyHelp">
+                    <!-- js 렌딩으로 개선 -->
+                  </ul>
+                  <button type="button" class="btn_close">
+                    <span class="blind">닫기</span>
+                  </button>
+                </div>
+                <div class="inner_card">
+                  <div class="scroll_control end_left">
+                    <div
+                      class="scroll_area"
+                      data-name="lifeIndex"
+                      data-click="false"
+                    >
+                      <ul class="chart_list">
+                        <li class="item">
+                          <strong class="tit">자외선지수</strong>
+                          <div class="chart_area level5_1">
+                            <div class="chart">
+                              <div
+                                class="_cnDonutChart"
+                                data-degree-value="72.0"
+                                data-color="rgb(50, 161, 255)"
+                                data-back-color="rgb(214, 228, 243)"
+                                data-code="a07"
+                              >
+                                <svg width="45" height="45" focusable="false">
+                                  <g transform="translate(22.5,22.5)">
+                                    <circle
+                                      r="20"
+                                      fill="rgb(255, 255, 255)"
+                                      stroke="rgb(214, 228, 243)"
+                                      stroke-width="5px"
+                                    ></circle>
+                                  </g>
+                                </svg>
+                              </div>
+                              <strong class="level ico"></strong>
+                            </div>
+                            <strong class="level_dsc">낮음</strong>
+                          </div>
+                        </li>
+                        <li class="item">
+                          <strong class="tit">대기정체지수</strong>
+                          <div class="chart_area level4_2">
+                            <div class="chart">
+                              <div
+                                class="_cnDonutChart"
+                                data-degree-value="180.0"
+                                data-color="rgb(0, 199, 60)"
+                                data-back-color="rgb(200, 240, 212)"
+                                data-code="a09"
+                              >
+                                <svg width="45" height="45" focusable="false">
+                                  <g transform="translate(22.5,22.5)">
+                                    <circle
+                                      r="20"
+                                      fill="rgb(255, 255, 255)"
+                                      stroke="rgb(200, 240, 212)"
+                                      stroke-width="5px"
+                                    ></circle>
+                                  </g>
+                                </svg>
+                              </div>
+                              <strong class="level ico"></strong>
+                            </div>
+                            <strong class="level_dsc">보통</strong>
+                          </div>
+                        </li>
+                        <li class="item">
+                          <strong class="tit">식중독지수</strong>
+                          <div class="chart_area level4_1">
+                            <div class="chart">
+                              <div
+                                class="_cnDonutChart"
+                                data-degree-value="90.0"
+                                data-color="rgb(50, 161, 255)"
+                                data-back-color="rgb(214, 228, 243)"
+                                data-code="a01_2"
+                              >
+                                <svg width="45" height="45" focusable="false">
+                                  <g transform="translate(22.5,22.5)">
+                                    <circle
+                                      r="20"
+                                      fill="rgb(255, 255, 255)"
+                                      stroke="rgb(214, 228, 243)"
+                                      stroke-width="5px"
+                                    ></circle>
+                                  </g>
+                                </svg>
+                              </div>
+                              <strong class="level ico"></strong>
+                            </div>
+                            <strong class="level_dsc">관심</strong>
+                          </div>
+                        </li>
+                        <li class="item" data->
+                          <strong class="tit">감기지수</strong>
+                          <div class="chart_area level4_2">
+                            <div class="chart">
+                              <div
+                                class="_cnDonutChart"
+                                data-degree-value="180.0"
+                                data-color="rgb(0, 199, 60)"
+                                data-back-color="rgb(200, 240, 212)"
+                                data-code="d05"
+                              >
+                                <svg width="45" height="45" focusable="false">
+                                  <g transform="translate(22.5,22.5)">
+                                    <circle
+                                      r="20"
+                                      fill="rgb(255, 255, 255)"
+                                      stroke="rgb(200, 240, 212)"
+                                      stroke-width="5px"
+                                    ></circle>
+                                  </g>
+                                </svg>
+                              </div>
+                              <strong class="level ico"></strong>
+                            </div>
+                            <strong class="level_dsc">보통</strong>
+                          </div>
+                        </li>
+                        <li class="item" data->
+                          <strong class="tit">천식지수</strong>
+                          <div class="chart_area level4_2">
+                            <div class="chart">
+                              <div
+                                class="_cnDonutChart"
+                                data-degree-value="180.0"
+                                data-color="rgb(0, 199, 60)"
+                                data-back-color="rgb(200, 240, 212)"
+                                data-code="d01"
+                              >
+                                <svg width="45" height="45" focusable="false">
+                                  <g transform="translate(22.5,22.5)">
+                                    <circle
+                                      r="20"
+                                      fill="rgb(255, 255, 255)"
+                                      stroke="rgb(200, 240, 212)"
+                                      stroke-width="5px"
+                                    ></circle>
+                                  </g>
+                                </svg>
+                              </div>
+                              <strong class="level ico"></strong>
+                            </div>
+                            <strong class="level_dsc">주의</strong>
+                          </div>
+                        </li>
+                        <li class="item" data->
+                          <strong class="tit">심뇌혈관질환지수</strong>
+                          <div class="chart_area level4_1">
+                            <div class="chart">
+                              <div
+                                class="_cnDonutChart"
+                                data-degree-value="90.0"
+                                data-color="rgb(50, 161, 255)"
+                                data-back-color="rgb(214, 228, 243)"
+                                data-code="d02"
+                              >
+                                <svg width="45" height="45" focusable="false">
+                                  <g transform="translate(22.5,22.5)">
+                                    <circle
+                                      r="20"
+                                      fill="rgb(255, 255, 255)"
+                                      stroke="rgb(214, 228, 243)"
+                                      stroke-width="5px"
+                                    ></circle>
+                                  </g>
+                                </svg>
+                              </div>
+                              <strong class="level ico"></strong>
+                            </div>
+                            <strong class="level_dsc">관심</strong>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <button type="button" class="btn_prev">
+                      <span class="blind">이전 보기</span>
+                    </button>
+                    <button type="button" class="btn_next">
+                      <span class="blind">다음 보기</span>
+                    </button>
+                  </div>
+                  <p class="offer_area">
+                    <a
+                      href="https://www.weather.go.kr/w/index.do"
+                      class="link_go"
+                      target="_blank"
+                      onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                      >기상청</a
+                    >
+                    <span class="margin_right">,</span>
+                    <a
+                      href="http://forecast.nhis.or.kr"
+                      class="link_go"
+                      target="_blank"
+                      onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                      >국민건강보험공단</a
+                    >
+                    <span class="margin_left margin_right">발표,</span>
+                    <a
+                      href="https://www.weatheri.co.kr"
+                      class="link_go"
+                      target="_blank"
+                      onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                      >웨더아이</a
+                    >
+                    <span class="margin_left margin_right">제공</span>
+                    <span>2023.12.09. 09:00 업데이트</span>
+                  </p>
+                </div>
+              </div>
+              <!-- 위성영상 -->
+              <div class="card card_video">
+                <h2 class="title tab_btn">
+                  <button
+                    type="button"
+                    class="title_tab on"
+                    onclick="nclk_v2(this, 'wtk.statmvt', '', '')"
+                  >
+                    위성 영상<span class="blind">선택됨</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="title_tab"
+                    onclick="nclk_v2(this, 'wtk.radmvt', '', '')"
+                  >
+                    레이더 영상
+                  </button>
+                </h2>
+
+                <div
+                  class="inner_video video_satellite _image_play_wrap"
+                  data-video-category="SAT"
+                >
+                  <div class="title">
+                    <strong class="_title_area">위성영상</strong>
+                  </div>
+
+                  <div class="video_area_wrap">
+                    <div class="video_area _image_play_area hidden">
+                      <div class="player">
+                        <button type="button" class="btn btn_play">
+                          <span class="blind">재생</span>
+                        </button>
+                        <div class="control_zone date_on">
+                          <div class="progress_control">
+                            <div class="noUi-date"></div>
+                            <div
+                              class="progress_whole noUi-target noUi-ltr noUi-horizontal"
+                            >
+                              <div class="noUi-base"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="video_map"></div>
+                    </div>
+                  </div>
+
+                  <div class="offer_area"></div>
+                </div>
+
+                <div
+                  class="inner_video video_radar none _image_play_wrap"
+                  data-video-category="RADAR"
+                >
+                  <div class="title">
+                    <strong class="_title_area">레이더영상</strong>
+                  </div>
+
+                  <div class="video_area_wrap">
+                    <div class="video_area _image_play_area hidden">
+                      <div class="player">
+                        <button type="button" class="btn btn_play">
+                          <span class="blind">재생</span>
+                        </button>
+                        <div class="control_zone date_on">
+                          <div class="progress_control">
+                            <div class="noUi-date"></div>
+                            <div
+                              class="progress_whole noUi-target noUi-ltr noUi-horizontal"
+                            >
+                              <div class="noUi-base"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="video_map"></div>
+                    </div>
+                  </div>
+
+                  <div class="offer_area"></div>
+                </div>
+              </div>
+              <!-- 날씨뉴스 -->
+              <div id="news" class="card card_news">
+                <h2 class="title">날씨뉴스</h2>
+                <div class="scroll_control end_left">
+                  <div
+                    class="scroll_area"
+                    data-name="news"
+                    data-click="false"
+                    data-nclk="wtk.wrknewsrc"
+                  >
+                    <ul class="news_list _cnNewsList">
+                      <!-- js 렌딩으로 개선 -->
+                    </ul>
+                  </div>
+                  <button type="button" class="btn_prev">
+                    <span class="blind">이전 보기</span>
+                  </button>
+                  <button type="button" class="btn_next">
+                    <span class="blind">다음 뉴스 보기</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="section_right">
+              <!-- 전국날씨 -->
+              <div id="nation" class="card card_nation">
+                <h2 class="title">전국날씨</h2>
+                <ul class="weekly_list _cnNationDateList">
+                  <!-- js 렌딩으로 개선 -->
+                </ul>
+                <div class="map_wrap">
+                  <div class="time_area">
+                    <button
+                      type="button"
+                      class="button on"
+                      data-hday="now"
+                      aria-selected="true"
+                    >
+                      현재
+                    </button>
+                    <button
+                      type="button"
+                      class="button"
+                      data-hday="am"
+                      aria-selected="false"
+                    >
+                      오전
+                    </button>
+                    <button
+                      type="button"
+                      class="button"
+                      data-hday="pm"
+                      aria-selected="false"
+                    >
+                      오후
+                    </button>
+                  </div>
+                  <div class="nation_map"></div>
+                </div>
+                <p class="offer_area">
+                  <a
+                    href="https://www.weather.go.kr/w/index.do"
+                    class="link_go"
+                    target="_blank"
+                    onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                    >기상청</a
+                  ><span class="margin_left margin_right">발표,</span
+                  ><a
+                    href="https://www.weatheri.co.kr"
+                    class="link_go"
+                    target="_blank"
+                    onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                    >웨더아이</a
+                  ><span class="margin_left margin_right">제공</span>
+                </p>
+              </div>
+              <div class="halve_area">
+                <div class="card_halve">
+                  <!-- 일출일몰 -->
+                  <div id="sunRiseSet" class="card card_sun">
+                    <div class="card_sun_inner">
+                      <h2 class="title">일출일몰</h2>
+                      <div class="btn_wrap">
+                        <button
+                          type="button"
+                          class="btn_sun on"
+                          onclick="nclk_v2(this, 'wtk.suncd', '', '')"
+                        >
+                          오늘
+                        </button>
+                        <button
+                          type="button"
+                          class="btn_sun"
+                          onclick="nclk_v2(this, 'wtk.suncd', '', '')"
+                        >
+                          내일
+                        </button>
+                      </div>
+                      <div class="sun_panel">
+                        <div class="sun_chart _cnLazy" data-ico="part6">
+                          <div class="move_sun"></div>
+                          <div class="progress_bar">
+                            <div class="current_bar">
+                              <span class="bar"></span>
+                            </div>
+                          </div>
+                          <div class="sun_info">
+                            <span class="icon_area"
+                              ><span
+                                class="ico _cnLazy"
+                                data-ico="ico_sun_up"
+                              ></span
+                            ></span>
+                            <dl class="time_list">
+                              <dt class="time_ttl">
+                                일출<span class="blind">시간</span>
+                              </dt>
+                              <dd class="time_sun">07:32</dd>
+                              <dt class="time_ttl">
+                                일몰<span class="blind">시간</span>
+                              </dt>
+                              <dd class="time_sun">17:15</dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sun_panel hide">
+                        <table class="sun_table">
+                          <caption>
+                            <span class="blind"
+                              >오늘부터 모레까지 일출 일몰 시간 정보</span
+                            >
+                          </caption>
+                          <colgroup>
+                            <col class="sun_th" />
+                            <col colspan="2" class="sun_td" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col" class="blind">날짜</th>
+                              <th scope="col">
+                                <span class="icon_area"
+                                  ><span
+                                    class="ico _cnLazy"
+                                    data-ico="ico_sun_up"
+                                  ></span></span
+                                ><span class="blind">일출 시간</span>
+                              </th>
+                              <th scope="col">
+                                <span class="icon_area"
+                                  ><span
+                                    class="ico _cnLazy"
+                                    data-ico="ico_sun_down"
+                                  ></span></span
+                                ><span class="blind">일몰 시간</span>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="sun_tr">
+                              <th scope="row" class="sun_th">
+                                오늘 <span class="sun_day">12.09.</span>
+                              </th>
+                              <td class="sun_td">
+                                일출 <strong class="sun_time">07:32</strong>
+                              </td>
+                              <td class="sun_td">
+                                일몰 <strong class="sun_time">17:15</strong>
+                              </td>
+                            </tr>
+                            <tr class="sun_tr">
+                              <th scope="row" class="sun_th">
+                                내일 <span class="sun_day">12.10.</span>
+                              </th>
+                              <td class="sun_td">
+                                일출 <strong class="sun_time">07:33</strong>
+                              </td>
+                              <td class="sun_td">
+                                일몰 <strong class="sun_time">17:15</strong>
+                              </td>
+                            </tr>
+                            <tr class="sun_tr">
+                              <th scope="row" class="sun_th">
+                                모레 <span class="sun_day">12.11.</span>
+                              </th>
+                              <td class="sun_td">
+                                일출 <strong class="sun_time">07:33</strong>
+                              </td>
+                              <td class="sun_td">
+                                일몰 <strong class="sun_time">17:15</strong>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <p class="offer_area">
+                      <a
+                        href="https://www.weather.go.kr/w/index.do"
+                        class="link_go"
+                        target="_blank"
+                        onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                        >기상청</a
+                      ><span class="margin_left margin_right">발표,</span
+                      ><a
+                        href="https://www.weatheri.co.kr"
+                        class="link_go"
+                        target="_blank"
+                        onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                        >웨더아이</a
+                      ><span class="margin_left margin_right">제공</span
+                      ><span>2023.07.01. 03:15 업데이트</span>
+                    </p>
+                  </div>
+                  <!-- 장기예보 -->
+                  <div class="card card_forecast_today">
+                    <h2 class="title _cnClimageTitle"></h2>
+                    <div class="inner_forecast forecast_season">
+                      <ul
+                        role="tablist"
+                        class="forecast_tablist _cnSeasonWetrTabList"
+                      >
+                        <!-- js 렌딩으로 개선 -->
+                      </ul>
+                      <!-- js 렌딩으로 개선 -->
+                    </div>
+                    <div class="inner_forecast forecast_monthly hide">
+                      <ul
+                        role="tablist"
+                        class="forecast_tablist _cnMonthlyWetrTabList"
+                      >
+                        <!-- js 렌딩으로 개선 -->
+                      </ul>
+
+                      <!-- js 렌딩으로 개선 -->
+                    </div>
+                    <p class="offer_area">
+                      <a
+                        href="https://www.weather.go.kr/w/index.do"
+                        class="link_go"
+                        target="_blank"
+                        onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                        >기상청</a
+                      ><span class="margin_left margin_right">발표,</span
+                      ><a
+                        href="https://www.weatheri.co.kr"
+                        class="link_go"
+                        target="_blank"
+                        onclick="nclk_v2(this, 'wtk.statreff', '', '')"
+                        >웨더아이</a
+                      ><span class="margin_left">제공</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="card_halve">
+                  <!-- 과거날씨 -->
+                  <div id="past" class="card card_past"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer" role="contentinfo">
+        <div class="content_inner">
+          <div class="link_list">
+            <span class="link_group">
+              <a
+                href="#"
+                class="link"
+                onclick="nclk_v2(this, 'fot.login', '', ''); oCommon.fnLogin(); return false;"
+                ><strong>로그인</strong></a
+              >
+              <a
+                href="https://m.naver.com/services.html?f=svc.weather"
+                class="link"
+                onclick="nclk_v2(this, 'fot.apps', '', '')"
+                >전체서비스</a
+              >
+            </span>
+            <span class="link_group">
+              <a
+                href="https://help.naver.com/alias/weather/weather_3.naver"
+                class="link"
+                onclick="nclk_v2(this, 'fot.help', '', '')"
+                >날씨도움말</a
+              >
+              <a
+                href="https://policy.naver.com/policy/privacy.html"
+                class="link"
+                onclick="nclk_v2(this, 'fot.priinfoman', '', '')"
+                ><strong>개인정보처리방침</strong></a
+              >
+              <a
+                href="https://help.naver.com/index.help?lang=ko"
+                class="link"
+                onclick="nclk_v2(this, 'fot.report', '', '')"
+                >고객센터</a
+              >
+            </span>
+          </div>
+          <p class="desc">
+            본 콘텐츠의 저작권은 제공처에 있으며, 이를 무단 이용하는 경우
+            저작권법 등에 따라 법적책임을 질 수 있습니다.
+          </p>
+          <ul class="info_list">
+            <li class="item">사업자등록번호: 220-81-62517</li>
+            <li class="item">통신판매업신고번호: 220-81-62517</li>
+            <li class="item">
+              대표이사: 최수연
+              <a
+                href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=2208162517"
+                target="_blank"
+                class="link"
+                onclick="nclk_v2(this, 'fot.regnum', '', '')"
+                >사업자정보 확인</a
+              >
+            </li>
+            <li class="item">
+              주소: 경기도 성남시 분당구 정자일로 95, NAVER 1784, 13561
+            </li>
+            <li class="item">대표전화: 1588-3820</li>
+          </ul>
+          <span class="link_group link_logo">
+            <a
+              href="https://www.navercorp.com/"
+              class="link"
+              onclick="nclk_v2(this, 'fot.naverlog', '', '')"
+            >
+              <span class="blind">NAVER</span>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.1/d3.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://ssl.pstatic.net/staticv2.weather/responsive/js/weather_common_202311231130.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://ssl.pstatic.net/staticv2.weather/responsive/js/corejs_202311231130.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://ssl.pstatic.net/staticv2.weather/responsive/js/regenerator-runtime_202311231130.js"
+    ></script>
+    <script>
+      var darkModeClass = '';
+
+      try {
+        oCommon.bindError();
+      } catch (e) {
+        // nothing
+      }
+
+      function _fnRemoveCloseBanner() {
+        var element = document.getElementById('_idToggleBanner');
+        if (element.classList.contains('on')) {
+          _fnWriteCookie('NV_WETR_TODAY_NO_MORE', 1, true, location.hostname);
+        }
+        document
+          .querySelector('#wrap')
+          .removeChild(document.querySelector('#_idCloseBanner'));
+      }
+
+      function _fnToggleTodayClose() {
+        var element = document.getElementById('_idToggleBanner');
+        if (element.classList.contains('on')) {
+          element.classList.remove('on');
+        } else {
+          element.classList.add('on');
+        }
+      }
+
+      function _fnWriteCookie(sName, nDay, sValue, sDomain, bQuotationMark) {
+        let dDate = new Date();
+        dDate.setTime(dDate.getTime() + nDay * 24 * 60 * 60 * 1000);
+        const sExpires = '; expires=' + dDate.toGMTString();
+        let sQuotationMark = '"';
+        if (bQuotationMark === false) {
+          sQuotationMark = '';
+        }
+
+        if (sDomain === '') {
+          // 도메인이 없는 경우
+          document.cookie =
+            sName +
+            '=' +
+            sQuotationMark +
+            sValue +
+            sQuotationMark +
+            '; expire=' +
+            sExpires +
+            '; path=/';
+        } else {
+          document.cookie =
+            sName +
+            '=' +
+            sQuotationMark +
+            sValue +
+            sQuotationMark +
+            '; expire=' +
+            sExpires +
+            '; domain=' +
+            sDomain +
+            '; path=/';
+        }
+      }
+
+      // GNB용
+      var baseURL = location.protocol + '//' + location.hostname;
+      var nsc = 'naver.service';
+      var gnb_service = 'weather';
+      var gnb_logout = baseURL;
+      var gnb_template = 'gnb_utf8';
+      var gnb_brightness = 1;
+      var gnb_item_hide_option = 128;
+
+      // nclick용
+      var g_ssc = 'Mweather.v4';
+      var ccsrv = 'cc.naver.com';
+      // var ccsrv = "alpha-cc.naver.com";
+
+      // DA광고용
+      var sDaUri =
+        'https://mv.veta.naver.com/fxshow?su=SU10165&da_dom_id=_idAD_weather';
+
+      // LCS용
+      var deviceType = 'pc';
+      var category = '';
+      var menu = 'today';
+      var lcsPrefix = deviceType === 'mobile' ? 'm_weather_' : 'weather_';
+      var lcsSuffix = category === '' ? '' : '_' + category;
+      var lcsStiCode = (lcsPrefix + menu + lcsSuffix).toLowerCase();
+
+      var phase = 'real';
+      var isNapp = false;
+      var isLogin = false;
+      var responsiveSizeType = oCommon.fnGetResponsiveSizeType();
+      var sRegionCode = '15133580';
+      var userAgent = 'go-http-client/2.0';
+      var oldPcDomain = 'https://weather.naver.com';
+      var oldMobileDomain = 'https://m.weather.naver.com';
+      var targetId = '#';
+      var targetType = '';
+      var reportTime = '';
+      var alarmType = '';
+      var naverApp = false;
+      var osName = 'unknown';
+      var searchExclude =
+        '날씨|날씨예보|미세먼지|초미세먼지|내일날씨|오늘날씨|주간날씨';
+      var isMsie = false;
+      var isNoMoreBanner = false;
+      var blockServiceType = '';
+      var buildTime = '';
+
+      buildTime = '202311231130';
+
+      var eventType = 'onpageshow' in window ? 'pageshow' : 'load';
+
+      oCommon.fnRednerMain();
+
+      $(window).on(eventType, function (event) {
+        if (event.originalEvent && event.originalEvent.persisted) {
+          window.location.reload();
+        }
+        oCommon.fnInit();
+        setTimeout(function () {
+          if ($('._cnSearchPopup').length > 0) {
+            oSearch.fnInit();
+          }
+
+          if (deviceType === 'pc' && $('.gnb_group').length > 0) {
+            oCommon
+              .fnCachedScript(
+                'https://ssl.pstatic.net/static.gn/templates/gnb_utf8?2023120911'
+              )
+              .done(function () {
+                getGNB();
+              })
+              .fail(function (jqXHR) {
+                oCommon.fnSendErrorToNelo('[gnb JS] script 호출 실패', jqXHR);
+              });
+          }
+        }, 50);
+
+        oCommon.fnHandlebarsInit(
+          'https://ssl.pstatic.net/staticv2.weather/responsive/handlebars/',
+          '202311231130'
+        );
+      });
+
+      // Image Lazy Loading
+      document.addEventListener('DOMContentLoaded', function () {
+        var lazyImages = [].slice.call($(document).find('img.lazy'));
+        var active = false;
+
+        var lazyLoad = function () {
+          if (active === false) {
+            active = true;
+
+            setTimeout(function () {
+              lazyImages.forEach(function (lazyImage) {
+                if (
+                  lazyImage.getBoundingClientRect().top <= window.innerHeight &&
+                  lazyImage.getBoundingClientRect().bottom >= 0 &&
+                  getComputedStyle(lazyImage).display !== 'none'
+                ) {
+                  lazyImage.src = $(lazyImage).data('src');
+                  lazyImage.classList.remove('lazy');
+
+                  lazyImages = lazyImages.filter(function (image) {
+                    return image !== lazyImage;
+                  });
+
+                  if (lazyImages.length === 0) {
+                    document.removeEventListener('scroll', lazyLoad);
+                    window.removeEventListener('resize', lazyLoad);
+                    window.removeEventListener('orientationchange', lazyLoad);
+                  }
+                }
+              });
+
+              active = false;
+            }, 200);
+          }
+        };
+
+        lazyLoad();
+        document.addEventListener('scroll', lazyLoad);
+        window.addEventListener('resize', lazyLoad);
+        window.addEventListener('orientationchange', lazyLoad);
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.7.1/billboard.min.js"></script>
+    <script>
+      var isDomestic = true;
+
+      var hourlyFcastListJson = [
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '12',
+          aplYmdt: '2023120912',
+          wetrCd: '5',
+          wetrTxt: '구름많음',
+          tmpr: 18.0,
+          rainProb: '-',
+          windDrctn: 'S',
+          windSpd: 3.0,
+          humd: 65,
+          fcastYmdt: '20231209103000',
+          oneHourRainAmt: '0.0',
+          oneHourSnowAmt: null,
+          lastUdtYmdt: '20231209114122',
+          rainAmt: '0',
+          snowAmt: '-',
+          windDrctnName: '남풍',
+          nowFcast: true,
+          windBarHeight: 10.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '13',
+          aplYmdt: '2023120913',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 18.0,
+          rainProb: '-',
+          windDrctn: 'S',
+          windSpd: 2.6,
+          humd: 65,
+          fcastYmdt: '20231209103000',
+          oneHourRainAmt: '0.0',
+          oneHourSnowAmt: null,
+          lastUdtYmdt: '20231209114122',
+          rainAmt: '0',
+          snowAmt: '-',
+          windDrctnName: '남풍',
+          nowFcast: true,
+          windBarHeight: 8.666666666666668,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '14',
+          aplYmdt: '2023120914',
+          wetrCd: '5',
+          wetrTxt: '구름많음',
+          tmpr: 18.0,
+          rainProb: '-',
+          windDrctn: 'SW',
+          windSpd: 2.3,
+          humd: 65,
+          fcastYmdt: '20231209103000',
+          oneHourRainAmt: '0.0',
+          oneHourSnowAmt: null,
+          lastUdtYmdt: '20231209114122',
+          rainAmt: '0',
+          snowAmt: '-',
+          windDrctnName: '남서풍',
+          nowFcast: true,
+          windBarHeight: 7.666666666666666,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '15',
+          aplYmdt: '2023120915',
+          wetrCd: '5',
+          wetrTxt: '구름많음',
+          tmpr: 17.0,
+          rainProb: '-',
+          windDrctn: 'SW',
+          windSpd: 2.1,
+          humd: 65,
+          fcastYmdt: '20231209103000',
+          oneHourRainAmt: '0.0',
+          oneHourSnowAmt: null,
+          lastUdtYmdt: '20231209114122',
+          rainAmt: '0',
+          snowAmt: '-',
+          windDrctnName: '남서풍',
+          nowFcast: true,
+          windBarHeight: 7.000000000000001,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '16',
+          aplYmdt: '2023120916',
+          wetrCd: '1',
+          wetrTxt: '맑음',
+          tmpr: 16.0,
+          rainProb: '-',
+          windDrctn: 'SW',
+          windSpd: 1.2,
+          humd: 75,
+          fcastYmdt: '20231209103000',
+          oneHourRainAmt: '0.0',
+          oneHourSnowAmt: null,
+          lastUdtYmdt: '20231209114122',
+          rainAmt: '0',
+          snowAmt: '-',
+          windDrctnName: '남서풍',
+          nowFcast: true,
+          windBarHeight: 4.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '17',
+          aplYmdt: '2023120917',
+          wetrCd: '5',
+          wetrTxt: '구름많음',
+          tmpr: 15.0,
+          rainProb: '20',
+          windDrctn: 'SW',
+          windSpd: 0.8,
+          humd: 80,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '남서풍',
+          nowFcast: false,
+          windBarHeight: 2.666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '18',
+          aplYmdt: '2023120918',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 13.0,
+          rainProb: '0',
+          windDrctn: 'S',
+          windSpd: 0.9,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '남풍',
+          nowFcast: false,
+          windBarHeight: 3.0000000000000004,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '19',
+          aplYmdt: '2023120919',
+          wetrCd: '6',
+          wetrTxt: '구름많음',
+          tmpr: 12.0,
+          rainProb: '20',
+          windDrctn: 'S',
+          windSpd: 0.8,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '남풍',
+          nowFcast: false,
+          windBarHeight: 2.666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '20',
+          aplYmdt: '2023120920',
+          wetrCd: '6',
+          wetrTxt: '구름많음',
+          tmpr: 11.0,
+          rainProb: '20',
+          windDrctn: 'S',
+          windSpd: 0.5,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '남풍',
+          nowFcast: false,
+          windBarHeight: 1.6666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '21',
+          aplYmdt: '2023120921',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 10.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 0.2,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 0.6666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '22',
+          aplYmdt: '2023120922',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 10.0,
+          rainProb: '0',
+          windDrctn: 'N',
+          windSpd: 0.6,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북풍',
+          nowFcast: false,
+          windBarHeight: 2.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '23',
+          aplYmdt: '2023120923',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 10.0,
+          rainProb: '0',
+          windDrctn: 'N',
+          windSpd: 0.8,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북풍',
+          nowFcast: false,
+          windBarHeight: 2.666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '00',
+          aplYmdt: '2023121000',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 9.0,
+          rainProb: '0',
+          windDrctn: 'N',
+          windSpd: 0.9,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북풍',
+          nowFcast: false,
+          windBarHeight: 3.0000000000000004,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '01',
+          aplYmdt: '2023121001',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 9.0,
+          rainProb: '0',
+          windDrctn: 'NE',
+          windSpd: 0.9,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 3.0000000000000004,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '02',
+          aplYmdt: '2023121002',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 9.0,
+          rainProb: '0',
+          windDrctn: 'NE',
+          windSpd: 0.9,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 3.0000000000000004,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '03',
+          aplYmdt: '2023121003',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 8.0,
+          rainProb: '0',
+          windDrctn: 'NE',
+          windSpd: 0.8,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 2.666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '04',
+          aplYmdt: '2023121004',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 8.0,
+          rainProb: '0',
+          windDrctn: 'NE',
+          windSpd: 0.9,
+          humd: 100,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 3.0000000000000004,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '05',
+          aplYmdt: '2023121005',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 8.0,
+          rainProb: '0',
+          windDrctn: 'NE',
+          windSpd: 0.8,
+          humd: 100,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 2.666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '06',
+          aplYmdt: '2023121006',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 8.0,
+          rainProb: '0',
+          windDrctn: 'NE',
+          windSpd: 0.8,
+          humd: 100,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 2.666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '07',
+          aplYmdt: '2023121007',
+          wetrCd: '2',
+          wetrTxt: '맑음',
+          tmpr: 8.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 0.9,
+          humd: 100,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 3.0000000000000004,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '08',
+          aplYmdt: '2023121008',
+          wetrCd: '1',
+          wetrTxt: '맑음',
+          tmpr: 7.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 1.1,
+          humd: 100,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 3.6666666666666665,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '09',
+          aplYmdt: '2023121009',
+          wetrCd: '1',
+          wetrTxt: '맑음',
+          tmpr: 8.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 1.5,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 5.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '10',
+          aplYmdt: '2023121010',
+          wetrCd: '1',
+          wetrTxt: '맑음',
+          tmpr: 9.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 1.7,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 5.666666666666666,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '11',
+          aplYmdt: '2023121011',
+          wetrCd: '1',
+          wetrTxt: '맑음',
+          tmpr: 10.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 1.8,
+          humd: 80,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 6.000000000000001,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '12',
+          aplYmdt: '2023121012',
+          wetrCd: '1',
+          wetrTxt: '맑음',
+          tmpr: 12.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 2.0,
+          humd: 75,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 6.666666666666667,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '13',
+          aplYmdt: '2023121013',
+          wetrCd: '1',
+          wetrTxt: '맑음',
+          tmpr: 13.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 2.3,
+          humd: 75,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 7.666666666666666,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '14',
+          aplYmdt: '2023121014',
+          wetrCd: '1',
+          wetrTxt: '맑음',
+          tmpr: 14.0,
+          rainProb: '0',
+          windDrctn: 'E',
+          windSpd: 2.5,
+          humd: 70,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 8.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '15',
+          aplYmdt: '2023121015',
+          wetrCd: '5',
+          wetrTxt: '구름많음',
+          tmpr: 15.0,
+          rainProb: '20',
+          windDrctn: 'E',
+          windSpd: 1.8,
+          humd: 70,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 6.000000000000001,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '16',
+          aplYmdt: '2023121016',
+          wetrCd: '5',
+          wetrTxt: '구름많음',
+          tmpr: 14.0,
+          rainProb: '20',
+          windDrctn: 'E',
+          windSpd: 2.1,
+          humd: 75,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 7.000000000000001,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '17',
+          aplYmdt: '2023121017',
+          wetrCd: '5',
+          wetrTxt: '구름많음',
+          tmpr: 13.0,
+          rainProb: '20',
+          windDrctn: 'E',
+          windSpd: 1.3,
+          humd: 80,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 4.333333333333334,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '18',
+          aplYmdt: '2023121018',
+          wetrCd: '6',
+          wetrTxt: '구름많음',
+          tmpr: 12.0,
+          rainProb: '20',
+          windDrctn: 'NE',
+          windSpd: 1.4,
+          humd: 80,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 4.666666666666666,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '19',
+          aplYmdt: '2023121019',
+          wetrCd: '6',
+          wetrTxt: '구름많음',
+          tmpr: 11.0,
+          rainProb: '20',
+          windDrctn: 'NE',
+          windSpd: 2.2,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 7.333333333333333,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '20',
+          aplYmdt: '2023121020',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 1.8,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 6.000000000000001,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '21',
+          aplYmdt: '2023121021',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 1.8,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 6.000000000000001,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '22',
+          aplYmdt: '2023121022',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 1.9,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 6.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231210',
+          aplTm: '23',
+          aplYmdt: '2023121023',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 1.9,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 6.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '00',
+          aplYmdt: '2023121100',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 2.1,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 7.000000000000001,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '01',
+          aplYmdt: '2023121101',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 2.3,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 7.666666666666666,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '02',
+          aplYmdt: '2023121102',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 2.4,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 8.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '03',
+          aplYmdt: '2023121103',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 2.2,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 7.333333333333333,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '04',
+          aplYmdt: '2023121104',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 10.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 2.5,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 8.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '05',
+          aplYmdt: '2023121105',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 2.8,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 9.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '06',
+          aplYmdt: '2023121106',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 2.8,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 9.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '07',
+          aplYmdt: '2023121107',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 3.1,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 10.333333333333334,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '08',
+          aplYmdt: '2023121108',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 3.4,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 11.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '09',
+          aplYmdt: '2023121109',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 11.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 4.6,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 15.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '10',
+          aplYmdt: '2023121110',
+          wetrCd: '7',
+          wetrTxt: '흐림',
+          tmpr: 12.0,
+          rainProb: '30',
+          windDrctn: 'E',
+          windSpd: 4.8,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '0',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '0',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 16.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '11',
+          aplYmdt: '2023121111',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 12.0,
+          rainProb: '60',
+          windDrctn: 'E',
+          windSpd: 5.5,
+          humd: 80,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '~1',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '~1',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 18.333333333333332,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '12',
+          aplYmdt: '2023121112',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 12.0,
+          rainProb: '60',
+          windDrctn: 'E',
+          windSpd: 5.7,
+          humd: 80,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '~1',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '~1',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 19.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '13',
+          aplYmdt: '2023121113',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 13.0,
+          rainProb: '60',
+          windDrctn: 'E',
+          windSpd: 5.4,
+          humd: 80,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '1',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '1',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 18.000000000000004,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '14',
+          aplYmdt: '2023121114',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 13.0,
+          rainProb: '60',
+          windDrctn: 'E',
+          windSpd: 4.7,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '2',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '2',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 15.666666666666668,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '15',
+          aplYmdt: '2023121115',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 12.0,
+          rainProb: '60',
+          windDrctn: 'E',
+          windSpd: 3.8,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '3',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '3',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 12.666666666666664,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '16',
+          aplYmdt: '2023121116',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 12.0,
+          rainProb: '60',
+          windDrctn: 'E',
+          windSpd: 4.3,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '3',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '3',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 14.333333333333334,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '17',
+          aplYmdt: '2023121117',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 12.0,
+          rainProb: '60',
+          windDrctn: 'E',
+          windSpd: 4.1,
+          humd: 85,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '4',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '4',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 13.666666666666666,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '18',
+          aplYmdt: '2023121118',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 12.0,
+          rainProb: '60',
+          windDrctn: 'E',
+          windSpd: 4.1,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '4',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '4',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 13.666666666666666,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '19',
+          aplYmdt: '2023121119',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 11.0,
+          rainProb: '66',
+          windDrctn: 'E',
+          windSpd: 4.2,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '3',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '3',
+          snowAmt: '0',
+          windDrctnName: '동풍',
+          nowFcast: false,
+          windBarHeight: 14.000000000000002,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '20',
+          aplYmdt: '2023121120',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 11.0,
+          rainProb: '68',
+          windDrctn: 'NE',
+          windSpd: 4.5,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '3',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '3',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 15.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '21',
+          aplYmdt: '2023121121',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 11.0,
+          rainProb: '65',
+          windDrctn: 'NE',
+          windSpd: 4.8,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '2',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '2',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 16.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '22',
+          aplYmdt: '2023121122',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 11.0,
+          rainProb: '71',
+          windDrctn: 'NE',
+          windSpd: 5.1,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '1',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '1',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 17.0,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231211',
+          aplTm: '23',
+          aplYmdt: '2023121123',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 10.0,
+          rainProb: '70',
+          windDrctn: 'NE',
+          windSpd: 4.7,
+          humd: 95,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '1',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '1',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 15.666666666666668,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231212',
+          aplTm: '00',
+          aplYmdt: '2023121200',
+          wetrCd: '9',
+          wetrTxt: '비',
+          tmpr: 10.0,
+          rainProb: '68',
+          windDrctn: 'NE',
+          windSpd: 4.9,
+          humd: 90,
+          fcastYmdt: '20231209080000',
+          oneHourRainAmt: '1',
+          oneHourSnowAmt: '0',
+          lastUdtYmdt: '20231209111603',
+          rainAmt: '1',
+          snowAmt: '0',
+          windDrctnName: '북동풍',
+          nowFcast: false,
+          windBarHeight: 16.333333333333336,
+          skip: false,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+      ];
+      var weeklyFcastListJson = [
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231211',
+          aplTm: null,
+          aplYmdt: '20231211',
+          fcastYmdt: '20231209085802',
+          wetrCd: null,
+          amWetrCd: '22',
+          pmWetrCd: '9',
+          wetrTxt: null,
+          amWetrTxt: '흐리고 한때 비',
+          pmWetrTxt: '흐리고 비',
+          minTmpr: 9.0,
+          maxTmpr: 12.0,
+          amRainProb: 60,
+          pmRainProb: 60,
+          dayString: '월',
+          tmprRange: 3.0,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231212',
+          aplTm: null,
+          aplYmdt: '20231212',
+          fcastYmdt: '20231209085802',
+          wetrCd: null,
+          amWetrCd: '9',
+          pmWetrCd: '1',
+          wetrTxt: null,
+          amWetrTxt: '흐리고 비',
+          pmWetrTxt: '맑음',
+          minTmpr: 7.0,
+          maxTmpr: 10.0,
+          amRainProb: 60,
+          pmRainProb: 0,
+          dayString: '화',
+          tmprRange: 3.0,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231213',
+          aplTm: null,
+          aplYmdt: '20231213',
+          fcastYmdt: '20231209085802',
+          wetrCd: null,
+          amWetrCd: '1',
+          pmWetrCd: '5',
+          wetrTxt: null,
+          amWetrTxt: '맑음',
+          pmWetrTxt: '구름많음',
+          minTmpr: -2.0,
+          maxTmpr: 10.0,
+          amRainProb: 0,
+          pmRainProb: 30,
+          dayString: '수',
+          tmprRange: 12.0,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231214',
+          aplTm: null,
+          aplYmdt: '20231214',
+          fcastYmdt: '20231209085802',
+          wetrCd: null,
+          amWetrCd: '7',
+          pmWetrCd: '9',
+          wetrTxt: null,
+          amWetrTxt: '흐림',
+          pmWetrTxt: '흐리고 비',
+          minTmpr: 3.0,
+          maxTmpr: 10.0,
+          amRainProb: 30,
+          pmRainProb: 60,
+          dayString: '목',
+          tmprRange: 7.0,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231215',
+          aplTm: null,
+          aplYmdt: '20231215',
+          fcastYmdt: '20231209085802',
+          wetrCd: null,
+          amWetrCd: '9',
+          pmWetrCd: '9',
+          wetrTxt: null,
+          amWetrTxt: '흐리고 비',
+          pmWetrTxt: '흐리고 비',
+          minTmpr: 10.0,
+          maxTmpr: 15.0,
+          amRainProb: 60,
+          pmRainProb: 60,
+          dayString: '금',
+          tmprRange: 5.0,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231216',
+          aplTm: null,
+          aplYmdt: '20231216',
+          fcastYmdt: '20231209085802',
+          wetrCd: null,
+          amWetrCd: '7',
+          pmWetrCd: '7',
+          wetrTxt: null,
+          amWetrTxt: '흐림',
+          pmWetrTxt: '흐림',
+          minTmpr: 1.0,
+          maxTmpr: 2.0,
+          amRainProb: 30,
+          pmRainProb: 30,
+          dayString: '토',
+          tmprRange: 1.0,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231217',
+          aplTm: null,
+          aplYmdt: '20231217',
+          fcastYmdt: '20231209085802',
+          wetrCd: null,
+          amWetrCd: '7',
+          pmWetrCd: '7',
+          wetrTxt: null,
+          amWetrTxt: '흐림',
+          pmWetrTxt: '흐림',
+          minTmpr: -9.0,
+          maxTmpr: -2.0,
+          amRainProb: 30,
+          pmRainProb: 30,
+          dayString: '일',
+          tmprRange: 7.0,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231218',
+          aplTm: null,
+          aplYmdt: '20231218',
+          fcastYmdt: '20231209085802',
+          wetrCd: null,
+          amWetrCd: '5',
+          pmWetrCd: '5',
+          wetrTxt: null,
+          amWetrTxt: '구름많음',
+          pmWetrTxt: '구름많음',
+          minTmpr: -10.0,
+          maxTmpr: -2.0,
+          amRainProb: 30,
+          pmRainProb: 30,
+          dayString: '월',
+          tmprRange: 8.0,
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+      ];
+      var cardMapJson = {
+        News: [
+          {
+            datetime: '2023-12-09 11:33:01',
+            officeId: '469',
+            subcontent:
+              '상대적으로 따뜻한 남서풍이 유입돼 이번 주말은 평년에 비해 10도 가량 따뜻할 전망이다. 9일 기상청에 따르면, 남서풍의 영향으로 이날 최고기온은 14~21도로 예상된다. 지역별로 보면 서울 16도, 강릉 19도, ',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/469/2023/12/09/774468.jpg',
+            articleId: '0000774468',
+            title: '봄 같은 주말 날씨... 평년보다 10도 높아',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=469&aid=0000774468',
+            officeHname: '한국일보',
+          },
+          {
+            datetime: '2023-12-09 11:21:02',
+            officeId: '003',
+            subcontent:
+              '다음 주(11~17일)는 저기압과 고기압 가장자리 영향권에 번갈아들며 대체로 흐린 날씨가 이어지겠다. 9일 기상청에 따르면, 다음 주 월요일(11일)은 저기압 영향으로 오전까지 전국에 비가 오겠다. 화요일(12일)도',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/003/2023/12/09/12257513.jpg',
+            articleId: '0012257513',
+            title: '전국 흐리고 비 소식도…포근한 겨울 날씨[다음주 날씨]',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=003&aid=0012257513',
+            officeHname: '뉴시스',
+          },
+          {
+            datetime: '2023-12-09 10:54:51',
+            officeId: '052',
+            subcontent:
+              '주말인 오늘 봄처럼 포근한 날씨가 이어지겠습니다. 다만 중국발 스모그가 유입되면서 고농도 미세먼지가 기승을 부리겠습니다. 야외에 나가 있는 기상캐스터 연결해 자세한 날씨, 알아보겠습니다. 박현실 캐스터! 날이 꽤 뿌',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/052/2023/12/09/1970504.jpg',
+            articleId: '0001970504',
+            title: '[날씨] 주말 때 아닌 봄 날씨...고농도 미세먼지 기승',
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=052&aid=0001970504',
+            officeHname: 'YTN',
+          },
+          {
+            datetime: '2023-12-09 10:52:03',
+            officeId: '422',
+            subcontent:
+              '오늘도 12월이 아닌 3월에 나타날 때아닌 봄 날씨가 이어지겠는데요. 공기질이 나쁘겠습니다. 찬 바람이 잦아들면서 대기의 흐름이 느려지고, 국외 미세먼지까지 들어오겠습니다. 오늘 중부를 중심으론 종일 공기질이 나쁘겠',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/422/2023/12/09/633569.jpg',
+            articleId: '0000633569',
+            title: '[날씨] 주말 때아닌 봄 날씨…중부 곳곳 미세먼지 나쁨',
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=422&aid=0000633569',
+            officeHname: '연합뉴스TV',
+          },
+          {
+            datetime: '2023-12-09 10:10:03',
+            officeId: '422',
+            subcontent:
+              '주말에도 때아닌 봄 날씨가 이어지면서 포근하겠습니다. 다만 중서부를 중심으로는 공기질이 나쁘겠고 동해안은 대기가 건조하겠습니다. [앵커] 자세한 날씨 전망 김민지 기상캐스터 알아보겠습니다. 어서 오세요. [김민지 /',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/422/2023/12/09/633548.jpg',
+            articleId: '0000633548',
+            title: '[토요와이드] 주말에도 때아닌 봄 날씨…모레 전국 곳곳 비',
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=422&aid=0000633548',
+            officeHname: '연합뉴스TV',
+          },
+          {
+            datetime: '2023-12-09 10:00:03',
+            officeId: '001',
+            subcontent:
+              '다음 주(11∼15일)에는 전국 곳곳에 비 또는 눈 소식이 있겠다. 9일 기상청에 따르면 화요일인 12일 오전과 목요일인 14일, 금요일인 15일에 전국적으로 비가 오겠다. 강원산지에는 비 또는 눈이 내리겠다. 평년',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/001/2023/12/09/14380717.jpg',
+            articleId: '0014380717',
+            title: '[내주날씨] 화·목·금요일 전국에 비…평년보다 기온 높아',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=001&aid=0014380717',
+            officeHname: '연합뉴스',
+          },
+          {
+            datetime: '2023-12-09 09:48:03',
+            officeId: '422',
+            subcontent:
+              '12월이 맞나 싶을 정도로 날이 많이 포근합니다. 보통 이맘때 서울 기준으로 아침에는 영하 2.3도, 한낮에는 5도 안팎을 보이는데요. 오늘 아침에 서울 12도 선에서 출발했습니다. 한낮에는 16도까지 기온이 오르면',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/422/2023/12/09/633540.jpg',
+            articleId: '0000633540',
+            title: '[날씨] 주말 전국 한낮 포근…중부 중심 공기질 나빠',
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=422&aid=0000633540',
+            officeHname: '연합뉴스TV',
+          },
+          {
+            datetime: '2023-12-09 09:37:01',
+            officeId: '437',
+            subcontent:
+              "'토요일인 오늘(9일) 날씨가 마치 '역행'하듯 기온이 높아 포근하겠습니다. 이날 기상청에 따르면 상대적으로 따뜻한 남서풍이 유입되면서 낮 최고기온은 14~21도를 보이겠습니다. 평년 오늘(3.3도~11도)과 비교하",
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/437/2023/12/09/370134.jpg',
+            articleId: '0000370134',
+            title: "'날씨가 역행하네'...포근한 오늘 낮 최고기온 14~21도",
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=437&aid=0000370134',
+            officeHname: 'JTBC',
+          },
+          {
+            datetime: '2023-12-09 09:36:41',
+            officeId: '056',
+            subcontent:
+              '주말인 오늘 고온현상이 이어지면서 포근하겠습니다. 한낮에 서울 16도, 전주 19도, 울산 21도까지 올라 평년 기온을 10도 이상 크게 웃돌겠습니다. 다만, 미세먼지를 주의하셔야겠습니다. 차츰 국외에서 미세먼지가 ',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/056/2023/12/09/11618930.jpg',
+            articleId: '0011618930',
+            title:
+              '[930 날씨] 포근한 주말, 한낮 서울 16도…중부 미세먼지 ‘나쁨’',
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=056&aid=0011618930',
+            officeHname: 'KBS',
+          },
+          {
+            datetime: '2023-12-09 09:34:00',
+            officeId: '421',
+            subcontent:
+              '10일 일요일에는 최고기온이 19도까지 오르는 등 12월인데도 포근한 날씨가 이어진다. 강원도와 경북 곳곳에선 비가 오는 곳이 있을 전망이다. 기상청은 이날부터 기온이 점차 낮이지는 경향을 보이겠지만 평년보다는 높겠',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/421/2023/12/09/7225101.jpg',
+            articleId: '0007225101',
+            title: "'최고 19도' 봄 같은 겨울 계속 …강원·경북엔 비[내일날씨]",
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=421&aid=0007225101',
+            officeHname: '뉴스1',
+          },
+          {
+            datetime: '2023-12-09 09:28:01',
+            officeId: '658',
+            subcontent:
+              '9일 부산 울산 경남은 대체로 맑은 가운데 봄처럼 포근한 날씨가 계속되겠다. 이날 오전 7시30분 현재 기온은 부산 15.3도, 울산 13.4도, 창원 11.9도, 김해 14.3도, 밀양 6.2도, 진주 6.4도, ',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/658/2023/12/09/60165.jpg',
+            articleId: '0000060165',
+            title: '부산 울산 경남 포근한 날씨…최고기온 18~21도',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=658&aid=0000060165',
+            officeHname: '국제신문',
+          },
+          {
+            datetime: '2023-12-09 09:21:35',
+            officeId: '449',
+            subcontent:
+              '토요일인 오늘(9일)은 기온이 평년보다 5~10도 가량 높은 포근한 날씨가 이어지겠습니다. 오전에는 수도권을 중심으로 짙은 안개가 끼겠습니다. 기상청에 따르면 오늘 아침 최저기온은 2~14도, 낮 최고기온은 13~2',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/449/2023/12/09/263342.jpg',
+            articleId: '0000263342',
+            title: '오늘 평년보다 10도 높아…수도권 미세먼지 ‘나쁨’',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=449&aid=0000263342',
+            officeHname: '채널A',
+          },
+          {
+            datetime: '2023-12-09 09:09:01',
+            officeId: '654',
+            subcontent:
+              '토요일인 9일 낮 최고 기온이 21도까지 올라 포근한 날씨가 이어지겠다. 아침 최저기온은 2∼14도로 예보됐다. 주요 지역 아침 최저기온은 서울 9도, 인천 9도, 수원 7도, 춘천 7도, 강릉 14도, 청주 10도',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/654/2023/12/09/59901.jpg',
+            articleId: '0000059901',
+            title: "'낮 최고 21도' 포근한 주말…수도권·강원 등 미세먼지 '나쁨'",
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=654&aid=0000059901',
+            officeHname: '강원도민일보',
+          },
+          {
+            datetime: '2023-12-09 09:00:00',
+            officeId: '001',
+            subcontent:
+              '일요일인 10일은 기온이 점차 낮아지지만 여전히 포근한 날씨를 보이겠다. 아침 최저기온은 1∼13도, 낮 최고기온은 11∼19도로 예보됐다. 전국이 대체로 맑다가 남부지방은 오후부터 차차 흐려지겠다. 오후부터 중부지',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/001/2023/12/09/14380684.jpg',
+            articleId: '0014380684',
+            title: '[내일날씨] 일요일도 포근…낮 최고기온 11∼19도',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=001&aid=0014380684',
+            officeHname: '연합뉴스',
+          },
+          {
+            datetime: '2023-12-09 08:32:47',
+            officeId: '052',
+            subcontent:
+              '주말인 오늘도 봄 같은 겨울 날씨입니다 4월 초 중순에 해당하는 포근한 날씨가 예상되는데요. 미세먼지가 유입되면서 호흡기 관리에 주의가 필요하다는 예봅니다. 자세한 날씨 기상팀 유다현 캐스터와 알아보겠습니다. 안녕하',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/052/2023/12/09/1970481.jpg',
+            articleId: '0001970481',
+            title: "[날씨] 봄 같은 겨울...미세먼지 영향 대부분 '나쁨'",
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=052&aid=0001970481',
+            officeHname: 'YTN',
+          },
+          {
+            datetime: '2023-12-09 08:24:04',
+            officeId: '001',
+            subcontent:
+              '토요일인 9일 전국이 가끔 구름 많은 가운데 낮 기온이 평년보다 높아 포근하겠다. 기상청에 따르면 이날은 상대적으로 따뜻한 남서풍이 유입되면서 낮 최고기온은 14∼21도로 예상된다. 이는 평년(3∼11도)에 비해 5',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/001/2023/12/09/14380670.jpg',
+            articleId: '0014380670',
+            title: "낮 최고기온 14∼21도로 '포근'…바다 풍랑·안개 주의",
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=001&aid=0014380670',
+            officeHname: '연합뉴스',
+          },
+          {
+            datetime: '2023-12-09 08:06:01',
+            officeId: '015',
+            subcontent:
+              '토요일인 9일은 낮 최고기온이 22도까지 오르는 등 전날에 이어 포근한 봄 날씨가 이어지겠다. 기상청에 따르면 이날 오전 5시 기준 기온은 서울 13.1도, 인천 12.2도, 수원 8.8도, 춘천 12.7도, 강릉 ',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/015/2023/12/09/4923545.jpg',
+            articleId: '0004923545',
+            title: '[날씨] 오늘도 봄처럼 포근…낮 최고기온 14∼21도',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=015&aid=0004923545',
+            officeHname: '한국경제',
+          },
+          {
+            datetime: '2023-12-09 07:46:18',
+            officeId: '056',
+            subcontent:
+              '주말인 오늘 두꺼운 겉옷은 다소 덥게 느껴질 수 있겠습니다. 오늘 서울 아침 기온 12.9도로 평년 기온을 무려 15도 가량 웃돌겠고요. 한낮에도 16도로 평년 기온을 10도 이상 웃돌겠습니다. 날이 포근해지니까 미',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/056/2023/12/09/11618907.jpg',
+            articleId: '0011618907',
+            title: '[주말 날씨] 포근한 주말…중부 미세먼지 ‘나쁨’',
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=056&aid=0011618907',
+            officeHname: 'KBS',
+          },
+          {
+            datetime: '2023-12-09 07:35:01',
+            officeId: '661',
+            subcontent:
+              '토요일인 오늘(9일) 제주지역은 낮최고기온이 22도까지 오르는 포근한 날씨를 보이는 가운데 오후부터 차차 흐려지겠습니다. 9일 제주지방기상청에 따르면,이날 제주도는 상대적으로 따듯한 남서풍이 유입되면서이 같은 날씨를',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/661/2023/12/09/34522.jpg',
+            articleId: '0000034522',
+            title: '[제주날씨] 포근한 주말, 낮최고 22도',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=661&aid=0000034522',
+            officeHname: 'JIBS',
+          },
+          {
+            datetime: '2023-12-09 07:22:01',
+            officeId: '660',
+            subcontent:
+              '주말인 오늘(9일) 전국의 기온이 평년보다 5~10도가량 높아 포근한 날씨가 이어지겠습니다. 기상청에 따르면 이날 전국이 가끔 구름이 많은 가운데 오후부터 경기북동부와 강원북부내륙에 0.1mm 미만의 빗방울이 떨어지',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/660/2023/12/09/51071.jpg',
+            articleId: '0000051071',
+            title: "봄처럼 따뜻한 주말..포근하지만 미세먼지는 '나쁨'",
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=660&aid=0000051071',
+            officeHname: 'kbc광주방송',
+          },
+          {
+            datetime: '2023-12-09 07:17:55',
+            officeId: '214',
+            subcontent:
+              '오늘 아침 역대 12월 관측 사상 가장 포근합니다. 전국 대부분 지역의 기온이 예년 수준을 15도에서 20도까지 크게 웃돌고 있는데요. 현재 서울의 기온 13.7도로 5월 중순에 해당하는 기온을 보이고 있고요. 강릉',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/214/2023/12/09/1317317.jpg',
+            articleId: '0001317317',
+            title: '[날씨] 종일 포근한 하루‥ 오후부터 미세먼지 유입',
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=214&aid=0001317317',
+            officeHname: 'MBC',
+          },
+          {
+            datetime: '2023-12-09 07:02:01',
+            officeId: '659',
+            subcontent:
+              '가을철 전라북도 평균 기온이 역대 2위 수준인 것으로 나타났습니다. 전주기상지청 자료를 보면 9~11월 전북의 평균 기온은 평년보다 1.1도 높은 15.2도를 기록했습니다. 특히, 부안과 임실의 평균기온은 각각 16',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/659/2023/12/09/17064.jpg',
+            articleId: '0000017064',
+            title: '올가을 기온 역대 2위.. 고기압과 엘니뇨 영향',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=659&aid=0000017064',
+            officeHname: '전주MBC',
+          },
+          {
+            datetime: '2023-12-09 06:56:05',
+            officeId: '003',
+            subcontent:
+              '9일 부산 지역은 대체로 맑다가 저녁부터 구름이 많아질 것으로 부산기상청은 예보했다. 이날 낮 최고기온은 20도, 10일 아침 최저기온은 13도로 예상됐다. 부산기상청은 "이날 상대적으로 따뜻한 남서풍이 유입되면서 ',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/003/2023/12/09/12257345.jpg',
+            articleId: '0012257345',
+            title: '부산, 맑다가 저녁부터 구름 많아져…낮 최고 20도',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=003&aid=0012257345',
+            officeHname: '뉴시스',
+          },
+          {
+            datetime: '2023-12-09 06:48:59',
+            officeId: '052',
+            subcontent:
+              '겨울이 맞나 싶을 정도로 포근합니다. 현재 서울 기온 13.1도로어제보다 8도나 높고요. 낮 기온, 16도로 어제와 비슷해온화합니다. 미세먼지는 여전한데요. 남서풍이 유입되면서 대부분 지방은 공기가 종일 탁할 것으로',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/052/2023/12/09/1970474.jpg',
+            articleId: '0001970474',
+            title: "[날씨] 봄 같은 겨울, 서쪽 미세먼지 '나쁨'",
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=052&aid=0001970474',
+            officeHname: 'YTN',
+          },
+          {
+            datetime: '2023-12-09 06:08:56',
+            officeId: '056',
+            subcontent:
+              '12월 초가 맞나 싶을 정도로 포근한 날씨가 이어지고 있습니다. 따뜻한 남서풍이 기온을 끌어올리고 있습니다. 오늘 아침 기온 분포도를 가져왔는데요. 보통 겨울철에는 영하로 내려간 지역이 많아서 푸른색을 띄는데 오늘은',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/056/2023/12/09/11618871.jpg',
+            articleId: '0011618871',
+            title: '[주말 날씨] 포근한 주말…중부 미세먼지·강원 산지 강풍',
+            type: '2',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=056&aid=0011618871',
+            officeHname: 'KBS',
+          },
+          {
+            datetime: '2023-12-09 06:07:02',
+            officeId: '003',
+            subcontent:
+              '대구와 경북은 대체로 맑은 날씨가 예상된다. 9일 대구지방기상청에 따르면 이날 대구·경북은 일본 남쪽 해상에 위치한 고기압의 영향을 받다가 차차 그 가장자리에 들겠다. 낮 최고기온은 15도~22도의 분포로 평년(5~',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/003/2023/12/09/12257328.jpg',
+            articleId: '0012257328',
+            title: '대구·경북, 대체로 맑음…낮 15~22도',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=003&aid=0012257328',
+            officeHname: '뉴시스',
+          },
+          {
+            datetime: '2023-12-09 06:06:05',
+            officeId: '003',
+            subcontent:
+              '토요일인 9일 충북지역은 가끔 구름 많은 가운데 포근한 날씨가 이어지겠다. 청주기상지청에 따르면 이날 오전 최저기온은 단양·보은 6도, 제천·충주·영동 7도, 음성·진천·괴산·옥천 9도, 청주·증평 10도 등이다. ',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/003/2023/12/09/12257326.jpg',
+            articleId: '0012257326',
+            title: "충북 가끔 구름 많고 낮 최고 18도 '포근'",
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=003&aid=0012257326',
+            officeHname: '뉴시스',
+          },
+          {
+            datetime: '2023-12-09 06:00:00',
+            officeId: '421',
+            subcontent:
+              '토요일인 9일 기온이 평년보다 5~10도 가량 높아 포근한 날씨가 이어지겠다. 오전에는 수도권을 중심으로 짙은 안개가 낄 전망이다. 기상청은 이날 일본 남쪽 해상에 위치한 고기압의 영향을 받다가 차차 그 가장자리에 ',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/421/2023/12/09/7224984.jpg',
+            articleId: '0007224984',
+            title:
+              "'겨울 실종' 평년보다 최대 10도 높아…아침엔 짙은 안개[오늘날씨]",
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=421&aid=0007224984',
+            officeHname: '뉴스1',
+          },
+          {
+            datetime: '2023-12-09 05:57:15',
+            officeId: '215',
+            subcontent:
+              '토요일인 9일은 낮 기온이 크게 올라 포근하겠다. 이날 오전 5시 현재 기온은 서울 13.1도, 인천 12.2도, 수원 8.8도, 춘천 12.7도, 강릉 16.2도, 청주 12.2도, 대전 9.9도, 전주 11.1도',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/215/2023/12/09/1138330.jpg',
+            articleId: '0001138330',
+            title: '낮 기온 크게 올라 포근…최고기온 21도',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=215&aid=0001138330',
+            officeHname: '한국경제TV',
+          },
+          {
+            datetime: '2023-12-09 05:22:26',
+            officeId: '001',
+            subcontent:
+              '토요일인 9일은 낮 기온이 크게 올라 포근하겠다. 이날 오전 5시 현재 기온은 서울 13.1도, 인천 12.2도, 수원 8.8도, 춘천 12.7도, 강릉 16.2도, 청주 12.2도, 대전 9.9도, 전주 11.1도',
+            imageUrl:
+              'http://mimgnews1.naver.net/image/origin/001/2023/12/09/14380594.jpg',
+            articleId: '0014380594',
+            title: '따뜻한 겨울…낮 최고기온 14∼21도',
+            type: '1',
+            url: 'http://m.news.naver.com/read.nhn?sid1=103&oid=001&aid=0014380594',
+            officeHname: '연합뉴스',
+          },
+        ],
+      };
+      var lifeIndexDataForLivingListJson = [
+        {
+          naverRegionCode: '15133580',
+          lifeIndexCode: 'a07',
+          lifeIndexName: '자외선지수',
+          fcastYmdt: '20231209090000',
+          aplYmdt: '20231209000000',
+          grade: 1,
+          figure: '2',
+          labelText: '낮음',
+          guideTextSummary:
+            '보호조치가 별도로 필요없으나, 민감한 분들은 자외선차단에 유의하세요.',
+          guideTextDetail:
+            '보호조치가 별도로 필요없으나, 민감한 분들은 자외선 차단제를 바르세요. 자외선 차단제는 햇볕노출 30분 전, 2시간마다 바르세요.',
+          legendDataList: [
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 1,
+              maxGrade: 5,
+              labelText: '낮음',
+              minFigure: '0',
+              maxFigure: null,
+              levelClass: 'level5_1',
+            },
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 2,
+              maxGrade: 5,
+              labelText: '보통',
+              minFigure: '3',
+              maxFigure: null,
+              levelClass: 'level5_2',
+            },
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 3,
+              maxGrade: 5,
+              labelText: '높음',
+              minFigure: '6',
+              maxFigure: null,
+              levelClass: 'level5_3',
+            },
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 4,
+              maxGrade: 5,
+              labelText: '매우높음',
+              minFigure: '8',
+              maxFigure: null,
+              levelClass: 'level5_4',
+            },
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 5,
+              maxGrade: 5,
+              labelText: '위험',
+              minFigure: '11',
+              maxFigure: null,
+              levelClass: 'level5_5',
+            },
+          ],
+          clickCode: 'uvindx',
+          levelClass: 'level5_1',
+          donutDegreeValue: 72.0,
+        },
+        {
+          naverRegionCode: '15133580',
+          lifeIndexCode: 'a09',
+          lifeIndexName: '대기정체지수',
+          fcastYmdt: '20231209060000',
+          aplYmdt: '20231209090000',
+          grade: 2,
+          figure: '',
+          labelText: '보통',
+          guideTextSummary:
+            '대기 중 오염물질이 기상요소에 의해 확산될 가능성이 보통입니다.',
+          guideTextDetail:
+            '대기상태에 의해 대기가 정체될 수 있는 가능성을 지수로 나타낸 것입니다. 미세먼지 지표와 함께 외부 활동을 결정할 때 활용할 수 있습니다.',
+          legendDataList: [
+            {
+              lifeIndexCode: 'A09',
+              nowGrade: 1,
+              maxGrade: 4,
+              labelText: '낮음',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_1',
+            },
+            {
+              lifeIndexCode: 'A09',
+              nowGrade: 2,
+              maxGrade: 4,
+              labelText: '보통',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_2',
+            },
+            {
+              lifeIndexCode: 'A09',
+              nowGrade: 3,
+              maxGrade: 4,
+              labelText: '높음',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_3',
+            },
+            {
+              lifeIndexCode: 'A09',
+              nowGrade: 4,
+              maxGrade: 4,
+              labelText: '매우높음',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_4',
+            },
+          ],
+          clickCode: 'difsindx',
+          levelClass: 'level4_2',
+          donutDegreeValue: 180.0,
+        },
+        {
+          naverRegionCode: '15133580',
+          lifeIndexCode: 'a01_2',
+          lifeIndexName: '식중독지수',
+          fcastYmdt: '20231209060000',
+          aplYmdt: '20231209000000',
+          grade: 1,
+          figure: '54',
+          labelText: '관심',
+          guideTextSummary:
+            '식중독 발생가능성은 낮으나 예방에 관심이 필요합니다. ',
+          guideTextDetail:
+            '식중독 발생 가능성은 낮으나 손씻기를 생활화 하는 등 예방에 지속적 관심이 필요합니다.',
+          legendDataList: [
+            {
+              lifeIndexCode: 'A01_2',
+              nowGrade: 1,
+              maxGrade: 4,
+              labelText: '관심',
+              minFigure: '0',
+              maxFigure: null,
+              levelClass: 'level4_1',
+            },
+            {
+              lifeIndexCode: 'A01_2',
+              nowGrade: 2,
+              maxGrade: 4,
+              labelText: '주의',
+              minFigure: '55',
+              maxFigure: null,
+              levelClass: 'level4_2',
+            },
+            {
+              lifeIndexCode: 'A01_2',
+              nowGrade: 3,
+              maxGrade: 4,
+              labelText: '경고',
+              minFigure: '71',
+              maxFigure: null,
+              levelClass: 'level4_3',
+            },
+            {
+              lifeIndexCode: 'A01_2',
+              nowGrade: 4,
+              maxGrade: 4,
+              labelText: '위험',
+              minFigure: '86',
+              maxFigure: null,
+              levelClass: 'level4_4',
+            },
+          ],
+          clickCode: 'fpoindx',
+          levelClass: 'level4_1',
+          donutDegreeValue: 90.0,
+        },
+      ];
+      var lifeIndexDataForHealthListJson = [
+        {
+          naverRegionCode: '15133580',
+          lifeIndexCode: 'd05',
+          lifeIndexName: '감기지수',
+          fcastYmdt: '20231209060000',
+          aplYmdt: '20231209000000',
+          grade: 2,
+          figure: '',
+          labelText: '보통',
+          guideTextSummary:
+            '감기예방을 위해 수분섭취와 외출후 청결유지에 유의해 주세요.',
+          guideTextDetail:
+            '규칙적인 생활습관을 유지하고, 수분을 적절히 섭취하며, 외출 후 손발을 깨끗이 씻으세요.',
+          legendDataList: [
+            {
+              lifeIndexCode: 'D05',
+              nowGrade: 1,
+              maxGrade: 4,
+              labelText: '낮음',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_1',
+            },
+            {
+              lifeIndexCode: 'D05',
+              nowGrade: 2,
+              maxGrade: 4,
+              labelText: '보통',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_2',
+            },
+            {
+              lifeIndexCode: 'D05',
+              nowGrade: 3,
+              maxGrade: 4,
+              labelText: '높음',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_3',
+            },
+            {
+              lifeIndexCode: 'D05',
+              nowGrade: 4,
+              maxGrade: 4,
+              labelText: '매우높음',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_4',
+            },
+          ],
+          clickCode: 'coldindx',
+          levelClass: 'level4_2',
+          donutDegreeValue: 180.0,
+        },
+        {
+          naverRegionCode: '15133580',
+          lifeIndexCode: 'd01',
+          lifeIndexName: '천식지수',
+          fcastYmdt: '20231209060000',
+          aplYmdt: '20231209000000',
+          grade: 2,
+          figure: '',
+          labelText: '주의',
+          guideTextSummary: '만성 천식환자는 각별한 주의가 필요한 날입니다.',
+          guideTextDetail:
+            '기상조건에 따른 천식 발생 가능성을 지수화 한 것입니다. 높은 기온은 오존농도를 높여 알레르기성 호흡질환에 영향을 미치며, 일교차가 큰 계절은 기도 바이러스 감염 발생이 증가합니다. 낮은 기온은 폐기능과 면역력에 영향을 미칩니다.',
+          legendDataList: [
+            {
+              lifeIndexCode: 'D01',
+              nowGrade: 1,
+              maxGrade: 4,
+              labelText: '관심',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_1',
+            },
+            {
+              lifeIndexCode: 'D01',
+              nowGrade: 2,
+              maxGrade: 4,
+              labelText: '주의',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_2',
+            },
+            {
+              lifeIndexCode: 'D01',
+              nowGrade: 3,
+              maxGrade: 4,
+              labelText: '경고',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_3',
+            },
+            {
+              lifeIndexCode: 'D01',
+              nowGrade: 4,
+              maxGrade: 4,
+              labelText: '위험',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_4',
+            },
+          ],
+          clickCode: 'lungindx',
+          levelClass: 'level4_2',
+          donutDegreeValue: 180.0,
+        },
+        {
+          naverRegionCode: '15133580',
+          lifeIndexCode: 'd02',
+          lifeIndexName: '심뇌혈관질환지수',
+          fcastYmdt: '20231209060000',
+          aplYmdt: '20231209000000',
+          grade: 1,
+          figure: '',
+          labelText: '관심',
+          guideTextSummary:
+            '심뇌혈관질환지수가 낮은 날이나, 건강관리 유의하세요.',
+          guideTextDetail:
+            '기온 등 기상조건에 따른 심뇌혈관질환 발생 가능성을 지수화 한 것입니다. 외부 기온이 낮아지면 혈관이 수축하고 혈압이 높아지고 흐름이 둔화되어 혈전이나 혈관질환 가능성이 커질 수 있으므로, 위험군은 추운날씨 건강관리가 필요합니다.',
+          legendDataList: [
+            {
+              lifeIndexCode: 'D02',
+              nowGrade: 1,
+              maxGrade: 4,
+              labelText: '관심',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_1',
+            },
+            {
+              lifeIndexCode: 'D02',
+              nowGrade: 2,
+              maxGrade: 4,
+              labelText: '주의',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_2',
+            },
+            {
+              lifeIndexCode: 'D02',
+              nowGrade: 3,
+              maxGrade: 4,
+              labelText: '경고',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_3',
+            },
+            {
+              lifeIndexCode: 'D02',
+              nowGrade: 4,
+              maxGrade: 4,
+              labelText: '위험',
+              minFigure: '',
+              maxFigure: null,
+              levelClass: 'level4_4',
+            },
+          ],
+          clickCode: 'strkindx',
+          levelClass: 'level4_1',
+          donutDegreeValue: 90.0,
+        },
+      ];
+      var monthlyWetrOutlk2ListJson = [
+        {
+          reportYmdt: '20231208200202',
+          fcastYmdt: '20231207110000',
+          rgnCd: '133',
+          cityRgnCd: 'CT006000',
+          cityRgnNm: '대전/세종/충남',
+          outlk:
+            '○기온 전망 : 1주는 평년과 비슷하거나 낮을 확률이 각각 40%, 2주는 평년과 비슷할 확률이 50%, 3주, 4주는 평년과 비슷하거나 높을 확률이 각각 40%입니다. ○강수량 전망: 1주, 2주, 4주는 평년과 비슷할 확률이 50%, 3주는 평년과 비슷하거나 많을 확률이 각각 40% 입니다.',
+          aplMpart: 1,
+          wetrOutlkPeriod: '01.01.~01.07.',
+          wetrOutlkTxt:
+            ' 대륙고기압의 영향을 주로 받아 춥겠고, 지형적인 영향에 의해 서해안을 중심으로 눈이 내릴 때가 있겠습니다. (주평균기온) 평년(-0.7~1.5℃)과 비슷하거나 낮을 확률이 각각 40% 입니다. (주강수량) 평년(0.9~4.8㎜)과 비슷할 확률이 50%입니다. ',
+          avgTmpr: '-0.7~1.5',
+          probTmpr1: 40,
+          probTmpr2: 40,
+          probTmpr3: 20,
+          probTmprTxt: '비슷함',
+          avgRain: '0.9~4.8',
+          probRain1: 30,
+          probRain2: 50,
+          probRain3: 20,
+          probRainTxt: '비슷함',
+        },
+        {
+          reportYmdt: '20231208200202',
+          fcastYmdt: '20231207110000',
+          rgnCd: '133',
+          cityRgnCd: 'CT006000',
+          cityRgnNm: '대전/세종/충남',
+          outlk:
+            '○기온 전망 : 1주는 평년과 비슷하거나 낮을 확률이 각각 40%, 2주는 평년과 비슷할 확률이 50%, 3주, 4주는 평년과 비슷하거나 높을 확률이 각각 40%입니다. ○강수량 전망: 1주, 2주, 4주는 평년과 비슷할 확률이 50%, 3주는 평년과 비슷하거나 많을 확률이 각각 40% 입니다.',
+          aplMpart: 2,
+          wetrOutlkPeriod: '01.08.~01.14.',
+          wetrOutlkTxt:
+            ' 대륙고기압과 이동성 고기압의 영향을 받아, 기온의 변동폭이 크겠습니다. (주평균기온) 평년(-2.0~-0.2℃)과 비슷할 확률이 50%입니다. (주강수량) 평년(1.1~4.9㎜)과 비슷할 확률이 50%입니다. ',
+          avgTmpr: '-2.0~-0.2',
+          probTmpr1: 30,
+          probTmpr2: 50,
+          probTmpr3: 20,
+          probTmprTxt: '비슷함',
+          avgRain: '1.1~4.9',
+          probRain1: 20,
+          probRain2: 50,
+          probRain3: 30,
+          probRainTxt: '비슷함',
+        },
+        {
+          reportYmdt: '20231208200202',
+          fcastYmdt: '20231207110000',
+          rgnCd: '133',
+          cityRgnCd: 'CT006000',
+          cityRgnNm: '대전/세종/충남',
+          outlk:
+            '○기온 전망 : 1주는 평년과 비슷하거나 낮을 확률이 각각 40%, 2주는 평년과 비슷할 확률이 50%, 3주, 4주는 평년과 비슷하거나 높을 확률이 각각 40%입니다. ○강수량 전망: 1주, 2주, 4주는 평년과 비슷할 확률이 50%, 3주는 평년과 비슷하거나 많을 확률이 각각 40% 입니다.',
+          aplMpart: 3,
+          wetrOutlkPeriod: '12.18.~12.24.',
+          wetrOutlkTxt:
+            ' 이동성 고기압과 대륙고기압의 영향을 받겠으나, 남쪽을 지나는 저기압의 영향을 받을 때가 있겠습니다. (주평균기온) 평년(-2.4~0.0℃)과 비슷하거나 높을 확률이 각각 40% 입니다. (주강수량) 평년(0.3~6.2㎜)과 비슷하거나 많을 확률이 각각 40% 입니다. ',
+          avgTmpr: '-2.4~0.0',
+          probTmpr1: 20,
+          probTmpr2: 40,
+          probTmpr3: 40,
+          probTmprTxt: '비슷함',
+          avgRain: '0.3~6.2',
+          probRain1: 20,
+          probRain2: 40,
+          probRain3: 40,
+          probRainTxt: '비슷함',
+        },
+        {
+          reportYmdt: '20231208200202',
+          fcastYmdt: '20231207110000',
+          rgnCd: '133',
+          cityRgnCd: 'CT006000',
+          cityRgnNm: '대전/세종/충남',
+          outlk:
+            '○기온 전망 : 1주는 평년과 비슷하거나 낮을 확률이 각각 40%, 2주는 평년과 비슷할 확률이 50%, 3주, 4주는 평년과 비슷하거나 높을 확률이 각각 40%입니다. ○강수량 전망: 1주, 2주, 4주는 평년과 비슷할 확률이 50%, 3주는 평년과 비슷하거나 많을 확률이 각각 40% 입니다.',
+          aplMpart: 4,
+          wetrOutlkPeriod: '12.25.~12.31.',
+          wetrOutlkTxt:
+            ' 이동성 고기압과 대륙고기압의 영향을 받겠습니다. (주평균기온) 평년(-2.5~0.7℃)과 비슷하거나 높을 확률이 각각 40% 입니다. (주강수량) 평년(0.5~1.9㎜)과 비슷할 확률이 50%입니다. ',
+          avgTmpr: '-2.5~0.7',
+          probTmpr1: 20,
+          probTmpr2: 40,
+          probTmpr3: 40,
+          probTmprTxt: '비슷함',
+          avgRain: '0.5~1.9',
+          probRain1: 30,
+          probRain2: 50,
+          probRain3: 20,
+          probRainTxt: '비슷함',
+        },
+      ];
+      var seasonWetrOutlk2ListJson = [
+        {
+          reportYmdt: '20231128150102',
+          fcastYmdt: '20231127000000',
+          rgnCd: '133',
+          cityRgnCd: 'CT006000',
+          cityRgnNm: '대전/세종/충남',
+          outlk:
+            '○기온 전망: 12월과 2월은 평년과 비슷하거나 높을 확률이 각각 40%, 1월은 평년과 비슷할 확률이 50%입니다. ○강수량 전망: 12월은 평년과 비슷하거나 많을 확률이 각각 40%, 1월과 2월은 평년과 비슷할 확률이 50%입니다. ※ 다음 3개월전망은 2023년 12월 22일 발표됩니다.',
+          aplMonth: 12,
+          wetrOutlkPeriod: '',
+          wetrOutlkTxt:
+            '   이동성 고기압의 영향을 주로 받겠으나 일시적인 찬 대륙고기압의 영향으로 기온이 큰 폭으로 떨어지고 눈이 내릴 때가 있겠으며, 저기압의 영향으로 많은 비가 내릴 때가 있겠습니다. (월평균기온) 평년(0.0~1.2℃)과 비슷하거나 높을 확률이 각각 40% 입니다. (월강수량) 평년(24.8~34.6㎜)과 비슷하거나 많을 확률이 각각 40% 입니다. ',
+          avgTmpr: '0.0~1.2',
+          probTmpr1: 20,
+          probTmpr2: 40,
+          probTmpr3: 40,
+          probTmprTxt: '비슷함',
+          avgRain: '24.8~34.6',
+          probRain1: 20,
+          probRain2: 40,
+          probRain3: 40,
+          probRainTxt: '비슷함',
+        },
+        {
+          reportYmdt: '20231128150102',
+          fcastYmdt: '20231127000000',
+          rgnCd: '133',
+          cityRgnCd: 'CT006000',
+          cityRgnNm: '대전/세종/충남',
+          outlk:
+            '○기온 전망: 12월과 2월은 평년과 비슷하거나 높을 확률이 각각 40%, 1월은 평년과 비슷할 확률이 50%입니다. ○강수량 전망: 12월은 평년과 비슷하거나 많을 확률이 각각 40%, 1월과 2월은 평년과 비슷할 확률이 50%입니다. ※ 다음 3개월전망은 2023년 12월 22일 발표됩니다.',
+          aplMonth: 1,
+          wetrOutlkPeriod: '',
+          wetrOutlkTxt:
+            '찬 대륙고기압의 영향을 주기적으로 받겠으며, 지형적인 영향으로 눈이 내리는 곳이 있겠습니다. (월평균기온) 평년(-2.1~0.9℃)과 비슷할 확률이 50%입니다. (월강수량) 평년(15.7~28.2㎜)과 비슷할 확률이 50%입니다. ',
+          avgTmpr: '-2.1~0.9',
+          probTmpr1: 20,
+          probTmpr2: 50,
+          probTmpr3: 30,
+          probTmprTxt: '비슷함',
+          avgRain: '15.7~28.2',
+          probRain1: 20,
+          probRain2: 50,
+          probRain3: 30,
+          probRainTxt: '비슷함',
+        },
+        {
+          reportYmdt: '20231128150102',
+          fcastYmdt: '20231127000000',
+          rgnCd: '133',
+          cityRgnCd: 'CT006000',
+          cityRgnNm: '대전/세종/충남',
+          outlk:
+            '○기온 전망: 12월과 2월은 평년과 비슷하거나 높을 확률이 각각 40%, 1월은 평년과 비슷할 확률이 50%입니다. ○강수량 전망: 12월은 평년과 비슷하거나 많을 확률이 각각 40%, 1월과 2월은 평년과 비슷할 확률이 50%입니다. ※ 다음 3개월전망은 2023년 12월 22일 발표됩니다.',
+          aplMonth: 2,
+          wetrOutlkPeriod: '',
+          wetrOutlkTxt:
+            '대륙고기압과 이동성 고기압의 영향을 주기적으로 받겠으며, 일시적으로 기온이 큰 폭으로 떨어지고 지형적인 영향으로 눈이 내리는 곳이 있겠습니다. (월평균기온) 평년(0.0~1.2℃)과 비슷하거나 높을 확률이 각각 40% 입니다. (월강수량) 평년(24.5~43.8㎜)과 비슷할 확률이 50%입니다. ',
+          avgTmpr: '0.0~1.2',
+          probTmpr1: 20,
+          probTmpr2: 40,
+          probTmpr3: 40,
+          probTmprTxt: '비슷함',
+          avgRain: '24.5~43.8',
+          probRain1: 20,
+          probRain2: 50,
+          probRain3: 30,
+          probRainTxt: '비슷함',
+        },
+      ];
+      var isSnow = 'false';
+      var weatherSummary = {
+        nowFcast: {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '천안시 서북구',
+          sareaNm: '부성1동',
+          cpName: 'KMA',
+          aplYmd: '20231209',
+          aplTm: '10',
+          aplYmdt: '2023120910',
+          wetrCd: '5',
+          wetrTxt: '구름많음',
+          tmpr: 17.0,
+          ytmpr: 3.6,
+          stmpr: 17.0,
+          rainProb: null,
+          oneHourRainAmt: '0',
+          windDrctn: 'S',
+          windSpd: 2.1,
+          humd: 70,
+          fcastYmdt: '20231209103000',
+          rainAmt: null,
+          snowAmt: null,
+          lastUdtYmdt: '20231209114122',
+          windDrctnName: '남풍',
+          fullAreaName: '천안시 서북구 부성1동',
+        },
+        uv: {
+          naverRegionCode: '15133580',
+          lifeIndexCode: 'a07',
+          lifeIndexName: '자외선지수',
+          fcastYmdt: '20231209090000',
+          aplYmdt: '20231209000000',
+          grade: 1,
+          figure: '2',
+          labelText: '낮음',
+          guideTextSummary:
+            '보호조치가 별도로 필요없으나, 민감한 분들은 자외선차단에 유의하세요.',
+          guideTextDetail:
+            '보호조치가 별도로 필요없으나, 민감한 분들은 자외선 차단제를 바르세요. 자외선 차단제는 햇볕노출 30분 전, 2시간마다 바르세요.',
+          legendDataList: [
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 1,
+              maxGrade: 5,
+              labelText: '낮음',
+              minFigure: '0',
+              maxFigure: null,
+              levelClass: 'level5_1',
+            },
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 2,
+              maxGrade: 5,
+              labelText: '보통',
+              minFigure: '3',
+              maxFigure: null,
+              levelClass: 'level5_2',
+            },
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 3,
+              maxGrade: 5,
+              labelText: '높음',
+              minFigure: '6',
+              maxFigure: null,
+              levelClass: 'level5_3',
+            },
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 4,
+              maxGrade: 5,
+              labelText: '매우높음',
+              minFigure: '8',
+              maxFigure: null,
+              levelClass: 'level5_4',
+            },
+            {
+              lifeIndexCode: 'A07',
+              nowGrade: 5,
+              maxGrade: 5,
+              labelText: '위험',
+              minFigure: '11',
+              maxFigure: null,
+              levelClass: 'level5_5',
+            },
+          ],
+          clickCode: 'uvindx',
+          levelClass: 'level5_1',
+          donutDegreeValue: 72.0,
+        },
+        sunRiseTm: '073200',
+        airDailyTrendList: [
+          {
+            naverRgnCd: '15133580',
+            aplYmd: '20231209',
+            aplYmdt: '20231209',
+            pm10Avg: 80.0,
+            pm10AvgLegend1: '보통',
+            pm25Avg: 35.0,
+            pm25AvgLegend1: '보통',
+            isForecastPM: false,
+            pm10AvgGrade: '2',
+            pm10AvgLevelClass: 'level4_2',
+            pm25AvgGrade: '2',
+            pm25AvgLevelClass: 'level4_2',
+            pm10AvgConvertPercent: 50.0,
+            pm25AvgConvertPercent: 50.0,
+            dayString: '토',
+            fullAreaName: 'null null',
+          },
+          {
+            naverRgnCd: '15133580',
+            aplYmd: '20231209',
+            aplYmdt: '20231209',
+            pm10Avg: 115.0,
+            pm10AvgLegend1: '한때나쁨',
+            pm25Avg: 75.0,
+            pm25AvgLegend1: '나쁨',
+            isForecastPM: true,
+            pm10AvgGrade: '3',
+            pm10AvgLevelClass: 'level4_3',
+            pm25AvgGrade: '3',
+            pm25AvgLevelClass: 'level4_3',
+            pm10AvgConvertPercent: 62.5,
+            pm25AvgConvertPercent: 75.0,
+            dayString: '토',
+            fullAreaName: 'null null',
+          },
+          {
+            naverRgnCd: '15133580',
+            aplYmd: '20231210',
+            aplYmdt: '20231210',
+            pm10Avg: 80.0,
+            pm10AvgLegend1: '보통',
+            pm25Avg: 55.0,
+            pm25AvgLegend1: '한때나쁨',
+            isForecastPM: false,
+            pm10AvgGrade: '2',
+            pm10AvgLevelClass: 'level4_2',
+            pm25AvgGrade: '3',
+            pm25AvgLevelClass: 'level4_3',
+            pm10AvgConvertPercent: 50.0,
+            pm25AvgConvertPercent: 62.5,
+            dayString: '일',
+            fullAreaName: 'null null',
+          },
+          {
+            naverRgnCd: '15133580',
+            aplYmd: '20231210',
+            aplYmdt: '20231210',
+            pm10Avg: 80.0,
+            pm10AvgLegend1: '보통',
+            pm25Avg: 35.0,
+            pm25AvgLegend1: '보통',
+            isForecastPM: true,
+            pm10AvgGrade: '2',
+            pm10AvgLevelClass: 'level4_2',
+            pm25AvgGrade: '2',
+            pm25AvgLevelClass: 'level4_2',
+            pm10AvgConvertPercent: 50.0,
+            pm25AvgConvertPercent: 50.0,
+            dayString: '일',
+            fullAreaName: 'null null',
+          },
+        ],
+        hdayFcastList: [
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231209',
+            aplTm: null,
+            aplYmdt: '20231209',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '5',
+            pmWetrCd: '5',
+            wetrTxt: null,
+            amWetrTxt: '구름많음',
+            pmWetrTxt: '구름많음',
+            minTmpr: 8.0,
+            maxTmpr: 18.0,
+            amRainProb: 20,
+            pmRainProb: 20,
+            dayString: '토',
+            tmprRange: 10.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231210',
+            aplTm: null,
+            aplYmdt: '20231210',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '1',
+            pmWetrCd: '5',
+            wetrTxt: null,
+            amWetrTxt: '맑음',
+            pmWetrTxt: '구름많음',
+            minTmpr: 7.0,
+            maxTmpr: 15.0,
+            amRainProb: 0,
+            pmRainProb: 20,
+            dayString: '일',
+            tmprRange: 8.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231211',
+            aplTm: null,
+            aplYmdt: '20231211',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '22',
+            pmWetrCd: '9',
+            wetrTxt: null,
+            amWetrTxt: '흐리고 한때 비',
+            pmWetrTxt: '흐리고 비',
+            minTmpr: 9.0,
+            maxTmpr: 12.0,
+            amRainProb: 60,
+            pmRainProb: 60,
+            dayString: '월',
+            tmprRange: 3.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231212',
+            aplTm: null,
+            aplYmdt: '20231212',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '9',
+            pmWetrCd: '1',
+            wetrTxt: null,
+            amWetrTxt: '흐리고 비',
+            pmWetrTxt: '맑음',
+            minTmpr: 7.0,
+            maxTmpr: 10.0,
+            amRainProb: 60,
+            pmRainProb: 0,
+            dayString: '화',
+            tmprRange: 3.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231213',
+            aplTm: null,
+            aplYmdt: '20231213',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '1',
+            pmWetrCd: '5',
+            wetrTxt: null,
+            amWetrTxt: '맑음',
+            pmWetrTxt: '구름많음',
+            minTmpr: -2.0,
+            maxTmpr: 10.0,
+            amRainProb: 0,
+            pmRainProb: 30,
+            dayString: '수',
+            tmprRange: 12.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231214',
+            aplTm: null,
+            aplYmdt: '20231214',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '7',
+            pmWetrCd: '9',
+            wetrTxt: null,
+            amWetrTxt: '흐림',
+            pmWetrTxt: '흐리고 비',
+            minTmpr: 3.0,
+            maxTmpr: 10.0,
+            amRainProb: 30,
+            pmRainProb: 60,
+            dayString: '목',
+            tmprRange: 7.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231215',
+            aplTm: null,
+            aplYmdt: '20231215',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '9',
+            pmWetrCd: '9',
+            wetrTxt: null,
+            amWetrTxt: '흐리고 비',
+            pmWetrTxt: '흐리고 비',
+            minTmpr: 10.0,
+            maxTmpr: 15.0,
+            amRainProb: 60,
+            pmRainProb: 60,
+            dayString: '금',
+            tmprRange: 5.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231216',
+            aplTm: null,
+            aplYmdt: '20231216',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '7',
+            pmWetrCd: '7',
+            wetrTxt: null,
+            amWetrTxt: '흐림',
+            pmWetrTxt: '흐림',
+            minTmpr: 1.0,
+            maxTmpr: 2.0,
+            amRainProb: 30,
+            pmRainProb: 30,
+            dayString: '토',
+            tmprRange: 1.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231217',
+            aplTm: null,
+            aplYmdt: '20231217',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '7',
+            pmWetrCd: '7',
+            wetrTxt: null,
+            amWetrTxt: '흐림',
+            pmWetrTxt: '흐림',
+            minTmpr: -9.0,
+            maxTmpr: -2.0,
+            amRainProb: 30,
+            pmRainProb: 30,
+            dayString: '일',
+            tmprRange: 7.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+          {
+            naverRgnCd: '15133580',
+            lareaNm: '충청남도',
+            mareaNm: '천안시 서북구',
+            sareaNm: '부성1동',
+            cpName: null,
+            aplYmd: '20231218',
+            aplTm: null,
+            aplYmdt: '20231218',
+            fcastYmdt: '20231209085802',
+            wetrCd: null,
+            amWetrCd: '5',
+            pmWetrCd: '5',
+            wetrTxt: null,
+            amWetrTxt: '구름많음',
+            pmWetrTxt: '구름많음',
+            minTmpr: -10.0,
+            maxTmpr: -2.0,
+            amRainProb: 30,
+            pmRainProb: 30,
+            dayString: '월',
+            tmprRange: 8.0,
+            fullAreaName: '천안시 서북구 부성1동',
+          },
+        ],
+        sunSetTm: '171500',
+        airFcast: {
+          naverRgnCd: '15133580',
+          lareaNm: '충청남도',
+          mareaNm: '서북구',
+          sareaNm: '부성1동',
+          cpName: null,
+          aplYmd: '20231209',
+          aplTm: '11',
+          aplYmdt: '2023120911',
+          stationId: '성성동',
+          stationName: '성성동',
+          stationAddress: null,
+          stationO3: 0.041,
+          stationO3Legend1: '보통',
+          stationPM10: 60,
+          stationPM10Aqi: 53,
+          stationPM10Legend1: '보통',
+          stationPM25: 31,
+          stationPM25Aqi: 91,
+          stationPM25Legend1: '보통',
+          stationKhai: 77,
+          stationKhaiLegend1: '보통',
+          stationSo2: 0.003,
+          stationSo2Legend1: '좋음',
+          stationCo: 0.4,
+          stationCoLegend1: '좋음',
+          stationNo2: 0.021,
+          stationNo2Legend1: '좋음',
+          obsYmdt: '20231209110000',
+          pm25ExistYn: 'Y',
+          stationLatitude: 36.839225,
+          stationLongitude: 127.137578,
+          stationGubun: '국가망',
+          stationNaverRgnCd: '15133590',
+          stationNaverRgnName: '서북구 부성2동',
+          zoomLevel: 13,
+          fcastYmdt: '20231209110000',
+          stationPM10LevelClass: 'level4_2',
+          stationPM25LevelClass: 'level4_2',
+          stationPM10LegendNum: '2',
+          stationPM10ConvertPercent: 40.0,
+          stationPM25LegendNum: '2',
+          stationPM25ConvertPercent: 45.0,
+          fullAreaName: '서북구 부성1동',
+        },
+      };
+
+      var sunRiseSet = {};
+      sunRiseSet.sriseTm = '073200';
+      sunRiseSet.ssetTm = '171500';
+      var cpName = 'KMA';
+      var oneDayAfter = '2023121000';
+      var twoDayAfter = '2023121100';
+      var threeDayAfter = '2023121200';
+
+      if (sRegionCode.indexOf('WD') != -1) {
+        lcsStiCode += '_overseas';
+      } else {
+        lcsStiCode += '_domestic';
+        if (document.referrer.indexOf('https://push') != -1) {
+          if (alarmType === 'TODAY') {
+            lcsStiCode += '_today';
+          } else if (alarmType === 'TOMORROW') {
+            lcsStiCode += '_tomorrow';
+          }
+        }
+      }
+
+      var imagePlayInfo = {
+        success: true,
+        message: 'OK',
+        resultCode: 200,
+        version: 'v1',
+        results: {
+          choiceQuery: null,
+          choiceResult: {
+            sliderImagePlay: {
+              RADAR: {
+                videoIdList: [
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_194%2F170208722360808Byi_PNG%2FRDR_CMI2_202312091050.png',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_153%2F1702087223526VjfLr_PNG%2FRDR_CMI2_202312091055.png',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_183%2F17020878160529r94i_PNG%2FRDR_CMI2_202312091055.png',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_122%2F17020878161262GlSS_PNG%2FRDR_CMI2_202312091100.png',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_253%2F1702088411439veaR2_PNG%2FRDR_CMI2_202312091105.png',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_29%2F1702088411470aBU7x_PNG%2FRDR_CMI2_202312091110.png',
+                ],
+                updateTime: '2023.12.09. 11:20',
+                offer: '기상청, 웨더아이',
+              },
+              SAT: {
+                videoIdList: [
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_299%2F1702081824313N9pTE_GIF%2FMTSAT_LIR_20231209092000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_201%2F1702082411404TpE3z_GIF%2FMTSAT_LIR_20231209093000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_6%2F1702083008520OB6U0_GIF%2FMTSAT_LIR_20231209094000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_132%2F17020836218945YcjH_GIF%2FMTSAT_LIR_20231209095000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_274%2F1702084215196ERbSm_GIF%2FMTSAT_LIR_20231209100000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_38%2F1702084810293ImPV4_GIF%2FMTSAT_LIR_20231209101000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_236%2F1702085418786D1Ug9_GIF%2FMTSAT_LIR_20231209102000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_219%2F1702086011844QxOsz_GIF%2FMTSAT_LIR_20231209103000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_177%2F1702086609362HO6si_GIF%2FMTSAT_LIR_20231209104000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_291%2F17020872226971BxeK_GIF%2FMTSAT_LIR_20231209105000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_117%2F1702087815725tSPWi_GIF%2FMTSAT_LIR_20231209110000.gif',
+                  'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20231209_289%2F17020884111221rOJK_GIF%2FMTSAT_LIR_20231209111000.gif',
+                ],
+                updateTime: '2023.12.09. 11:20',
+                offer: '기상청, 웨더아이',
+              },
+            },
+          },
+        },
+      };
+
+      $(window).on(eventType, function () {
+        oCommon
+          .fnCachedScript(
+            'https://ssl.pstatic.net/staticv2.weather/responsive/js/weather_today_202311231130.js'
+          )
+          .done(function () {
+            oCommon.fnSendLCS({
+              sti: lcsStiCode,
+            });
+            oToday.fnInit();
+          })
+          .fail(function (jqXHR) {
+            oCommon.fnSendErrorToNelo(
+              '[weather_today JS] script 호출 실패',
+              jqXHR
+            );
+          });
+        oCommon
+          .fnCachedScript(
+            'https://ssl.pstatic.net/tveta/libs/assets/js/mo/main/min/mo.veta.core.min.js?202311231130.js'
+          )
+          .done(function () {
+            oCommon.fxshowCall();
+          })
+          .fail(function (jqXHR) {
+            oCommon.fnSendErrorToNelo('[da JS] 광고 script 호출 실패', jqXHR);
+          });
+      });
+    </script>
+  </body>
+</html>
