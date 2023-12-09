@@ -38,16 +38,16 @@ func WriteMarkdown(createTime time.Time) {
 		daysWithoutAccident := jsonReader.ParseToKey(jsonReader.ReadJson().DaysWithoutAccidentFormat, "days-without-accident-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay, createTime)))
 
 		// 날씨: 맑음 / 맑음
-		foo := "날씨: "
+		weatherText := "날씨: "
 		for _, HdayFcast := range weather.ReadWeather().HdayFcastList {
 			// 날짜를 입력
 			date := createTime.Format("20060102")
 			// 조건부로 출력하기
 			if date == HdayFcast.AplYmd {
-				foo += HdayFcast.AmWetrTxt
-				foo += " / "
-				foo += HdayFcast.PmWetrTxt
-				foo += "\n\n"
+				weatherText += HdayFcast.AmWetrTxt
+				weatherText += " / "
+				weatherText += HdayFcast.PmWetrTxt
+				weatherText += "\n\n"
 			}
 		}
 
@@ -57,7 +57,7 @@ func WriteMarkdown(createTime time.Time) {
 		// todo
 		todo := jsonReader.ReadJson().TodoFormat
 
-		template := "# " + title + daysWithoutAccident + foo + gratificationDiary + todo
+		template := "# " + title + daysWithoutAccident + weatherText + gratificationDiary + todo
 
 		// 오늘 TIL에 쓰기
 		fmt.Fprintln(todayFile, string(template))
@@ -89,16 +89,16 @@ func WriteRetro(createTime time.Time, retroKind string) {
 		daysWithoutAccident := jsonReader.ParseToKey(jsonReader.ReadJson().DaysWithoutAccidentFormat, "days-without-accident-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay, createTime)))
 
 		// 날씨: 맑음 / 맑음
-		foo := "날씨: "
+		weatherText := "날씨: "
 		for _, HdayFcast := range weather.ReadWeather().HdayFcastList {
 			// 날짜를 입력
 			date := createTime.Format("20060102")
 			// 조건부로 출력하기
 			if date == HdayFcast.AplYmd {
-				foo += HdayFcast.AmWetrTxt
-				foo += " / "
-				foo += HdayFcast.PmWetrTxt
-				foo += "\n\n"
+				weatherText += HdayFcast.AmWetrTxt
+				weatherText += " / "
+				weatherText += HdayFcast.PmWetrTxt
+				weatherText += "\n\n"
 			}
 		}
 
@@ -119,7 +119,7 @@ func WriteRetro(createTime time.Time, retroKind string) {
 
 		retro := jsonReader.ReadJson().RetroFormat
 
-		template := "# " + title + daysWithoutAccident + foo + gratificationDiary + todo + retro
+		template := "# " + title + daysWithoutAccident + weatherText + gratificationDiary + todo + retro
 
 		fmt.Fprintln(todayFile, string(template))
 
