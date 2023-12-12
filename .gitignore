@@ -9,19 +9,19 @@
 
 ### Above combination will ignore all files without extension ###
 
-# Ignore files with extension `.class` & `.sm`
+# Ignore files with extension .class & .sm
 *.class
 *.sm
 
-# Ignore `bin` dir
+# Ignore bin dir
 bin/
 # or
 */bin/*
 
-# Unignore all `.jar` in `bin` dir
+# Unignore all .jar in bin dir
 !*/bin/*.jar
 
-# Ignore all `library.jar` in `bin` dir
+# Ignore all library.jar in bin dir
 */bin/library.jar
 
 # Ignore a file with extension
@@ -29,3 +29,4 @@ relative/path/to/dir/filename.extension
 
 # Ignore a file without extension
 template.md
+til-config.json

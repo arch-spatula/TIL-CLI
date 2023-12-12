@@ -14,7 +14,7 @@ import (
 // tempCmd represents the temp command
 var tempCmd = &cobra.Command{
 	Use:   "temp",
-	Short: "A brief description of your command",
+	Short: "템플릿에 해당하는 마크다운을 생성합니다.",
 	Long: `템플릿에 해당하는 마크다운을 생성합니다.
 
 템플릿은 single source of truth에 해당합니다.
