@@ -21,14 +21,20 @@ var experimentalCmd = &cobra.Command{
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("experimental called")
-		for i, HdayFcast := range weather.ReadWeather().HdayFcastList {
+		weather.ReadWeather()
+		weatherText := "날씨: "
+		for _, HdayFcast := range weather.ReadWeather() {
 			// 날짜를 입력
-			date := time.Now().AddDate(0, 0, 1).Format("20060102")
+			date := time.Now().Format("20060102")
 			// 조건부로 출력하기
 			if date == HdayFcast.AplYmd {
-				fmt.Println(i, date, HdayFcast.AplYmd, HdayFcast.FullAreaName, HdayFcast.AmWetrTxt, HdayFcast.PmWetrTxt)
+				weatherText += HdayFcast.AmWetrTxt
+				weatherText += " / "
+				weatherText += HdayFcast.PmWetrTxt
+				weatherText += "\n\n"
 			}
 		}
+		fmt.Println(weatherText)
 	},
 }
 

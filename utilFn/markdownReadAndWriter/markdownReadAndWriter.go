@@ -39,7 +39,7 @@ func WriteMarkdown(createTime time.Time) {
 
 		// 날씨: 맑음 / 맑음
 		weatherText := "날씨: "
-		for _, HdayFcast := range weather.ReadWeather().HdayFcastList {
+		for _, HdayFcast := range weather.ReadWeather() {
 			// 날짜를 입력
 			date := createTime.Format("20060102")
 			// 조건부로 출력하기
@@ -88,9 +88,9 @@ func WriteRetro(createTime time.Time, retroKind string) {
 
 		daysWithoutAccident := jsonReader.ParseToKey(jsonReader.ReadJson().DaysWithoutAccidentFormat, "days-without-accident-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay, createTime)))
 
-		// 날씨: 맑음 / 맑음
+		// // 날씨: 맑음 / 맑음
 		weatherText := "날씨: "
-		for _, HdayFcast := range weather.ReadWeather().HdayFcastList {
+		for _, HdayFcast := range weather.ReadWeather() {
 			// 날짜를 입력
 			date := createTime.Format("20060102")
 			// 조건부로 출력하기
