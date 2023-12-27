@@ -42,8 +42,8 @@ func ReadWeather() ThisWeekWeather {
 		panic(err)
 	}
 	doc := string(data)
-	startDoc := strings.Split(doc, `domesticWeeklyFcastList":`)[1]
-	endDoc := strings.Split(startDoc, "},\"sliderImagePlay~~2")[0]
+	startDoc := strings.Split(doc, `"domesticWeeklyFcastList":`)[1]
+	endDoc := strings.Split(startDoc, `},"sliderImagePlay~~2"`)[0]
 
 	var thisWeekWeather ThisWeekWeather
 	err = json.Unmarshal([]byte(endDoc), &thisWeekWeather)

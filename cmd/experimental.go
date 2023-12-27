@@ -23,6 +23,7 @@ var experimentalCmd = &cobra.Command{
 		fmt.Println("experimental called")
 		weather.ReadWeather()
 		weatherText := "날씨: "
+
 		for _, HdayFcast := range weather.ReadWeather() {
 			// 날짜를 입력
 			date := time.Now().Format("20060102")
