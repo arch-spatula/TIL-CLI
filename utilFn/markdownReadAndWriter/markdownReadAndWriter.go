@@ -8,7 +8,6 @@ import (
 
 	"github.com/arch-spatula/TIL-CLI/utilFn/common"
 	"github.com/arch-spatula/TIL-CLI/utilFn/jsonReader"
-	"github.com/arch-spatula/TIL-CLI/utilFn/weather"
 )
 
 func WriteMarkdown(createTime time.Time) {
@@ -38,18 +37,18 @@ func WriteMarkdown(createTime time.Time) {
 		daysWithoutAccident := jsonReader.ParseToKey(jsonReader.ReadJson().DaysWithoutAccidentFormat, "days-without-accident-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay, createTime)))
 
 		// 날씨: 맑음 / 맑음
-		weatherText := "날씨: "
-		for _, HdayFcast := range weather.ReadWeather() {
-			// 날짜를 입력
-			date := createTime.Format("20060102")
-			// 조건부로 출력하기
-			if date == HdayFcast.AplYmd {
-				weatherText += HdayFcast.AmWetrTxt
-				weatherText += " / "
-				weatherText += HdayFcast.PmWetrTxt
-				weatherText += "\n\n"
-			}
-		}
+		// weatherText := "날씨: "
+		// for _, HdayFcast := range weather.ReadWeather() {
+		// 	// 날짜를 입력
+		// 	date := createTime.Format("20060102")
+		// 	// 조건부로 출력하기
+		// 	if date == HdayFcast.AplYmd {
+		// 		weatherText += HdayFcast.AmWetrTxt
+		// 		weatherText += " / "
+		// 		weatherText += HdayFcast.PmWetrTxt
+		// 		weatherText += "\n\n"
+		// 	}
+		// }
 
 		// 감사일기
 		gratificationDiary := jsonReader.ReadJson().GratificationFormat
@@ -57,7 +56,8 @@ func WriteMarkdown(createTime time.Time) {
 		// todo
 		todo := jsonReader.ReadJson().TodoFormat
 
-		template := "# " + title + daysWithoutAccident + weatherText + gratificationDiary + todo
+		// weatherText
+		template := "# " + title + daysWithoutAccident + gratificationDiary + todo
 
 		// 오늘 TIL에 쓰기
 		fmt.Fprintln(todayFile, string(template))
@@ -89,18 +89,18 @@ func WriteRetro(createTime time.Time, retroKind string) {
 		daysWithoutAccident := jsonReader.ParseToKey(jsonReader.ReadJson().DaysWithoutAccidentFormat, "days-without-accident-day", strconv.Itoa(common.DiffDays(jsonReader.ReadJson().DaysWithoutAccidentDay, createTime)))
 
 		// // 날씨: 맑음 / 맑음
-		weatherText := "날씨: "
-		for _, HdayFcast := range weather.ReadWeather() {
-			// 날짜를 입력
-			date := createTime.Format("20060102")
-			// 조건부로 출력하기
-			if date == HdayFcast.AplYmd {
-				weatherText += HdayFcast.AmWetrTxt
-				weatherText += " / "
-				weatherText += HdayFcast.PmWetrTxt
-				weatherText += "\n\n"
-			}
-		}
+		// weatherText := "날씨: "
+		// for _, HdayFcast := range weather.ReadWeather() {
+		// 	// 날짜를 입력
+		// 	date := createTime.Format("20060102")
+		// 	// 조건부로 출력하기
+		// 	if date == HdayFcast.AplYmd {
+		// 		weatherText += HdayFcast.AmWetrTxt
+		// 		weatherText += " / "
+		// 		weatherText += HdayFcast.PmWetrTxt
+		// 		weatherText += "\n\n"
+		// 	}
+		// }
 
 		gratificationDiary := jsonReader.ReadJson().GratificationFormat
 
@@ -119,7 +119,7 @@ func WriteRetro(createTime time.Time, retroKind string) {
 
 		retro := jsonReader.ReadJson().RetroFormat
 
-		template := "# " + title + daysWithoutAccident + weatherText + gratificationDiary + todo + retro
+		template := "# " + title + daysWithoutAccident + gratificationDiary + todo + retro // + weatherText
 
 		fmt.Fprintln(todayFile, string(template))
 
